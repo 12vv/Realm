@@ -1,0 +1,925 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		00B7CC7D97BD4C0C94D8AC53 /* Photon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55FAFC5962764CFE8CDC49F7 /* Photon.cpp */; };
+		02899E9734AA46C7BB4603C4 /* app1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 084C594D398A4F53A9A35785 /* app1.cpp */; };
+		028CAE47A5B5424B8BCA8BF5 /* VoxelGrid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 658BF09224264F899624B53A /* VoxelGrid.cpp */; };
+		03416C88237F4F6DA0F9B9C3 /* NaiveAcceleration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2B36A5C5C2AA48A799C0349C /* NaiveAcceleration.cpp */; };
+		0A89903C3EC74F32AA10129F /* Application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00A5B0AE512845BE88991CF8 /* Application.cpp */; };
+		13B14F04330146069CE0E44C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A44B26D1AB92491ABE58D533 /* main.cpp */; };
+		1D44672CA4F34C3D82F33B83 /* MeshLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7A63411B2954C57846378AF /* MeshLoader.cpp */; };
+		24E1D7672156419694D5EC99 /* Material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8E81A17EC3540408A04D0E3 /* Material.cpp */; };
+		27CFCBDE2EC0407FA76A7B06 /* PhotonMappingRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C11EC7CB56E4862BFE58F60 /* PhotonMappingRenderer.cpp */; };
+		2D97F815A6FF42D1B6EF776D /* RayTracer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A511D7A37B9E4CFF8BEEBDED /* RayTracer.cpp */; };
+		3ABD5118CE7C4BB9906D1759 /* SceneObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DBBAFAD406F4C1797C86270 /* SceneObject.cpp */; };
+		462F9206088C4F33A849181E /* AccelerationGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DBD24755E5A04DF39B6B22D7 /* AccelerationGenerator.cpp */; };
+		49B27CB786E54EAE96CB8681 /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4BD264C1226C4BF8A1D7028F /* Renderer.cpp */; };
+		515CF581A04045D3BD6F0025 /* BVHNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0D4A2F756AB24927BAF6179E /* BVHNode.cpp */; };
+		5FAC35E5DC384E4381B6DD89 /* PerspectiveCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 275A70E313C143B7A5A03E41 /* PerspectiveCamera.cpp */; };
+		62C5F58E59B84C74AE4DB0CE /* Voxel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4BF27EC79164BAFAC849519 /* Voxel.cpp */; };
+		667E53AD647646B291F7FB2F /* JitterColorSampler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 831EFA37E4CC4349A16D1448 /* JitterColorSampler.cpp */; };
+		6F9ADA4FD1E949D5A02C84F1 /* MeshObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84ABCC8309764557B6BEABE6 /* MeshObject.cpp */; };
+		7800A651DF794205BF21140E /* CubeMapTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 98C08340482A47DA92130C52 /* CubeMapTexture.cpp */; };
+		7F50A89851FD4E57B2255FD3 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E93915EE7E6A4A78ADF6762F /* Texture.cpp */; };
+		839BDE2D9A6A49EC9CCE9BC2 /* Diagnostics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E22CC61277ED45258D182FC7 /* Diagnostics.cpp */; };
+		843C73F47A9049BBBD4D05FB /* ImageWriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C0B8E92CB06C4D8AAFB18160 /* ImageWriter.cpp */; };
+		85D96922057B4EB4AF92AAED /* Texture2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95119BB0AD484189BCD25CB5 /* Texture2D.cpp */; };
+		8A97904565744F06937BADC7 /* Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1D6F990604CC49ADBFBE0C98 /* Timer.cpp */; };
+		8F508349F33F44F1AFE4707B /* SimpleAdaptiveSampler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 17F10396A53A4C2AA8DB3B62 /* SimpleAdaptiveSampler.cpp */; };
+		8FC63B2A24F4473E97010899 /* BlinnPhongMaterial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E1A46CBEC47E4EB092D49BFA /* BlinnPhongMaterial.cpp */; };
+		937F629A53C148A38A0209F2 /* BackwardRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E240F6D7FB1143938E066FF5 /* BackwardRenderer.cpp */; };
+		A8FFEDCD47A14B11B50731D3 /* ColorSampler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 139F082BE71E4C59AC5E0A8B /* ColorSampler.cpp */; };
+		A9503BA629154D6E983B2ED6 /* AccelerationNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 34733AF95719499D847E53E2 /* AccelerationNode.cpp */; };
+		AA31E0CE587A4CF7B54EF439 /* PointLight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFEFD55724FC427AAE0CF0BD /* PointLight.cpp */; };
+		AE5BA1FA3CED4E6FB611874D /* Light.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55C2E724D7F647F983ECD179 /* Light.cpp */; };
+		B7C5FA29606E4D11A3C9DBDE /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2355F96172404D22B0299B85 /* Scene.cpp */; };
+		B94D0C054DC548569008E148 /* Box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DBA2F56B1BAC4749BF89E4AA /* Box.cpp */; };
+		BC1FDF3B7C454D479C30CDFE /* DirectionalLight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBAB628F95544308AA0D9AE6 /* DirectionalLight.cpp */; };
+		C45D83850F084127870EB1B6 /* BVHAcceleration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DF76A7DF08E34044A297E134 /* BVHAcceleration.cpp */; };
+		C4EBD53DD0B24D4AB4158E48 /* UniformGridAcceleration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D968F31E176941BD99934AFB /* UniformGridAcceleration.cpp */; };
+		CE487C1092994DEB92372358 /* TextureLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CA18506CEA744CA3AAA3E0CD /* TextureLoader.cpp */; };
+		D0BD5A481DBC40648B381CAB /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FD67CBD85D6C4F90A3F8EA58 /* Camera.cpp */; };
+		D12C47E32B7B42EFAF239325 /* Ray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E114C59B60264792B53BE8D3 /* Ray.cpp */; };
+		D3D0B811240A577600FAC597 /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D3D0B80F240A577600FAC597 /* test.cpp */; };
+		E4094311550644AD8761CBF5 /* IntersectionState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5886FC1A1A144EFBAFE6EF69 /* IntersectionState.cpp */; };
+		E4D373C018764D019D5E5490 /* AccelerationStructure.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33E4B2EC289445D3A548B00F /* AccelerationStructure.cpp */; };
+		EA6468FBDDC94B4B8F4506E5 /* AreaLight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1BC84F39348849AC81249DDC /* AreaLight.cpp */; };
+		F1BAD5C473334A38A2C6F3B9 /* Triangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6233FAAC9EAB439EA5FEE47E /* Triangle.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		00A5B0AE512845BE88991CF8 /* Application.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Application.cpp; path = common/Application.cpp; sourceTree = SOURCE_ROOT; };
+		084C594D398A4F53A9A35785 /* app1.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = app1.cpp; path = test/app1.cpp; sourceTree = SOURCE_ROOT; };
+		0B2BB7237E094A88B59DDBD3 /* AccelerationTypes.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = AccelerationTypes.h; path = common/Acceleration/AccelerationTypes.h; sourceTree = SOURCE_ROOT; };
+		0C11EC7CB56E4862BFE58F60 /* PhotonMappingRenderer.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = PhotonMappingRenderer.cpp; path = common/Rendering/Renderer/Photon/PhotonMappingRenderer.cpp; sourceTree = SOURCE_ROOT; };
+		0D4A2F756AB24927BAF6179E /* BVHNode.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = BVHNode.cpp; path = common/Acceleration/BVH/Internal/BVHNode.cpp; sourceTree = SOURCE_ROOT; };
+		139F082BE71E4C59AC5E0A8B /* ColorSampler.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ColorSampler.cpp; path = common/Sampling/ColorSampler.cpp; sourceTree = SOURCE_ROOT; };
+		13C272A0077C4858BB29F5C6 /* AccelerationStructure.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = AccelerationStructure.h; path = common/Acceleration/AccelerationStructure.h; sourceTree = SOURCE_ROOT; };
+		17F10396A53A4C2AA8DB3B62 /* SimpleAdaptiveSampler.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = SimpleAdaptiveSampler.cpp; path = common/Sampling/Adaptive/Simple/SimpleAdaptiveSampler.cpp; sourceTree = SOURCE_ROOT; };
+		1BC84F39348849AC81249DDC /* AreaLight.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = AreaLight.cpp; path = common/Scene/Lights/Area/AreaLight.cpp; sourceTree = SOURCE_ROOT; };
+		1D6F990604CC49ADBFBE0C98 /* Timer.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Timer.cpp; path = common/Utility/Timer/Timer.cpp; sourceTree = SOURCE_ROOT; };
+		2046CAFC31F243F6AEAD37A0 /* Light.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Light.h; path = common/Scene/Lights/Light.h; sourceTree = SOURCE_ROOT; };
+		20D9C5CB936D49BC861973C2 /* BVHAcceleration.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = BVHAcceleration.h; path = common/Acceleration/BVH/BVHAcceleration.h; sourceTree = SOURCE_ROOT; };
+		2355F96172404D22B0299B85 /* Scene.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Scene.cpp; path = common/Scene/Scene.cpp; sourceTree = SOURCE_ROOT; };
+		275A70E313C143B7A5A03E41 /* PerspectiveCamera.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = PerspectiveCamera.cpp; path = common/Scene/Camera/Perspective/PerspectiveCamera.cpp; sourceTree = SOURCE_ROOT; };
+		2B36A5C5C2AA48A799C0349C /* NaiveAcceleration.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = NaiveAcceleration.cpp; path = common/Acceleration/Naive/NaiveAcceleration.cpp; sourceTree = SOURCE_ROOT; };
+		33E4B2EC289445D3A548B00F /* AccelerationStructure.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = AccelerationStructure.cpp; path = common/Acceleration/AccelerationStructure.cpp; sourceTree = SOURCE_ROOT; };
+		34733AF95719499D847E53E2 /* AccelerationNode.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = AccelerationNode.cpp; path = common/Acceleration/AccelerationNode.cpp; sourceTree = SOURCE_ROOT; };
+		35FAFCB8B2B84D29828FC3BA /* realm */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; path = realm; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A4FE213410A4BC181ECF758 /* PointLight.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = PointLight.h; path = common/Scene/Lights/Point/PointLight.h; sourceTree = SOURCE_ROOT; };
+		3EC6414CA5E24F93A25489C1 /* SamplerCommon.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = SamplerCommon.h; path = common/Sampling/SamplerCommon.h; sourceTree = SOURCE_ROOT; };
+		40DF16B5CFE14FEA8149E152 /* Triangle.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Triangle.h; path = common/Scene/Geometry/Primitives/Triangle/Triangle.h; sourceTree = SOURCE_ROOT; };
+		453738B8F9DD41109CA8C6A6 /* AccelerationNode.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = AccelerationNode.h; path = common/Acceleration/AccelerationNode.h; sourceTree = SOURCE_ROOT; };
+		45726729F40444F8896616ED /* SimpleAdaptiveSampler.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = SimpleAdaptiveSampler.h; path = common/Sampling/Adaptive/Simple/SimpleAdaptiveSampler.h; sourceTree = SOURCE_ROOT; };
+		4A56267CBD1F424BA892ADBF /* NaiveAcceleration.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = NaiveAcceleration.h; path = common/Acceleration/Naive/NaiveAcceleration.h; sourceTree = SOURCE_ROOT; };
+		4BD264C1226C4BF8A1D7028F /* Renderer.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Renderer.cpp; path = common/Rendering/Renderer.cpp; sourceTree = SOURCE_ROOT; };
+		55C2E724D7F647F983ECD179 /* Light.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Light.cpp; path = common/Scene/Lights/Light.cpp; sourceTree = SOURCE_ROOT; };
+		55FAFC5962764CFE8CDC49F7 /* Photon.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Photon.cpp; path = common/Rendering/Renderer/Photon/Photon.cpp; sourceTree = SOURCE_ROOT; };
+		583A20FE75474196A471AD71 /* IntersectionState.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = IntersectionState.h; path = common/Intersection/IntersectionState.h; sourceTree = SOURCE_ROOT; };
+		5886FC1A1A144EFBAFE6EF69 /* IntersectionState.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = IntersectionState.cpp; path = common/Intersection/IntersectionState.cpp; sourceTree = SOURCE_ROOT; };
+		59BA3C04B03A4D08ADDEB269 /* MeshObject.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = MeshObject.h; path = common/Scene/Geometry/Mesh/MeshObject.h; sourceTree = SOURCE_ROOT; };
+		5DBBAFAD406F4C1797C86270 /* SceneObject.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = SceneObject.cpp; path = common/Scene/SceneObject.cpp; sourceTree = SOURCE_ROOT; };
+		6099F5AE85B34DC89B053FF4 /* Diagnostics.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Diagnostics.h; path = common/Utility/Diagnostics/Diagnostics.h; sourceTree = SOURCE_ROOT; };
+		60D4F3CEDFDA4697BDB349FD /* ImageWriter.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ImageWriter.h; path = common/Output/ImageWriter.h; sourceTree = SOURCE_ROOT; };
+		6233FAAC9EAB439EA5FEE47E /* Triangle.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Triangle.cpp; path = common/Scene/Geometry/Primitives/Triangle/Triangle.cpp; sourceTree = SOURCE_ROOT; };
+		658BF09224264F899624B53A /* VoxelGrid.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = VoxelGrid.cpp; path = common/Acceleration/UniformGrid/Internal/VoxelGrid.cpp; sourceTree = SOURCE_ROOT; };
+		6BC4D80396D5491685178356 /* common.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = common.h; path = common/common.h; sourceTree = SOURCE_ROOT; };
+		6F62F7E35B2C499490EC0F51 /* Voxel.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Voxel.h; path = common/Acceleration/UniformGrid/Internal/Voxel.h; sourceTree = SOURCE_ROOT; };
+		71D6300DDC2643448E22BDD1 /* JitterColorSampler.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = JitterColorSampler.h; path = common/Sampling/Jitter/JitterColorSampler.h; sourceTree = SOURCE_ROOT; };
+		80C9F59F3532418298CC0EB0 /* SceneObject.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = SceneObject.h; path = common/Scene/SceneObject.h; sourceTree = SOURCE_ROOT; };
+		831EFA37E4CC4349A16D1448 /* JitterColorSampler.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = JitterColorSampler.cpp; path = common/Sampling/Jitter/JitterColorSampler.cpp; sourceTree = SOURCE_ROOT; };
+		83A0D9BA97A1414EBA7BAB01 /* Texture.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Texture.h; path = common/Rendering/Textures/Texture.h; sourceTree = SOURCE_ROOT; };
+		84ABCC8309764557B6BEABE6 /* MeshObject.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = MeshObject.cpp; path = common/Scene/Geometry/Mesh/MeshObject.cpp; sourceTree = SOURCE_ROOT; };
+		84C066BC870A434F8FFC5F26 /* Texture2D.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Texture2D.h; path = common/Rendering/Textures/Texture2D.h; sourceTree = SOURCE_ROOT; };
+		894F124CF63A4040A51DBE85 /* app1.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = app1.h; path = test/app1.h; sourceTree = SOURCE_ROOT; };
+		8BB7EC13AA8D4EF8A3BB438B /* BackwardRenderer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = BackwardRenderer.h; path = common/Rendering/Renderer/Backward/BackwardRenderer.h; sourceTree = SOURCE_ROOT; };
+		8BD2B12EC1B04180A8FDD727 /* RayTracer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = RayTracer.h; path = common/RayTracer.h; sourceTree = SOURCE_ROOT; };
+		8D0A376276D94879B6F95559 /* Material.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Material.h; path = common/Rendering/Material/Material.h; sourceTree = SOURCE_ROOT; };
+		91783E9E178A47958D0BDBEF /* Ray.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Ray.h; path = common/Scene/Geometry/Ray/Ray.h; sourceTree = SOURCE_ROOT; };
+		91D2FC9DBED44B04AC0705CA /* DirectionalLight.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = DirectionalLight.h; path = common/Scene/Lights/Directional/DirectionalLight.h; sourceTree = SOURCE_ROOT; };
+		949B89CDDCCF4DF496E46378 /* Box.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Box.h; path = common/Scene/Geometry/Simple/Box/Box.h; sourceTree = SOURCE_ROOT; };
+		94DE94E2E38849DC8623AB79 /* AccelerationGenerator.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = AccelerationGenerator.h; path = common/Acceleration/AccelerationGenerator.h; sourceTree = SOURCE_ROOT; };
+		95119BB0AD484189BCD25CB5 /* Texture2D.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Texture2D.cpp; path = common/Rendering/Textures/Texture2D.cpp; sourceTree = SOURCE_ROOT; };
+		965FB3EB01154D178B025256 /* BVHNode.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = BVHNode.h; path = common/Acceleration/BVH/Internal/BVHNode.h; sourceTree = SOURCE_ROOT; };
+		98C08340482A47DA92130C52 /* CubeMapTexture.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = CubeMapTexture.cpp; path = common/Rendering/Textures/CubeMapTexture.cpp; sourceTree = SOURCE_ROOT; };
+		9FFE79E95A52437C95E64B5B /* Photon.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Photon.h; path = common/Rendering/Renderer/Photon/Photon.h; sourceTree = SOURCE_ROOT; };
+		A44B26D1AB92491ABE58D533 /* main.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; path = main.cpp; sourceTree = SOURCE_ROOT; };
+		A4BF27EC79164BAFAC849519 /* Voxel.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Voxel.cpp; path = common/Acceleration/UniformGrid/Internal/Voxel.cpp; sourceTree = SOURCE_ROOT; };
+		A511D7A37B9E4CFF8BEEBDED /* RayTracer.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = RayTracer.cpp; path = common/RayTracer.cpp; sourceTree = SOURCE_ROOT; };
+		A9C8B31E30C4462C873C09D3 /* core.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = core.h; path = common/core.h; sourceTree = SOURCE_ROOT; };
+		B0C1567E931F49F5B4C7A869 /* Renderer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Renderer.h; path = common/Rendering/Renderer.h; sourceTree = SOURCE_ROOT; };
+		B1A093770916412CA5309EC8 /* Scene.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Scene.h; path = common/Scene/Scene.h; sourceTree = SOURCE_ROOT; };
+		B4805CE49ED841C1AB164AD9 /* Timer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Timer.h; path = common/Utility/Timer/Timer.h; sourceTree = SOURCE_ROOT; };
+		B8E81A17EC3540408A04D0E3 /* Material.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Material.cpp; path = common/Rendering/Material/Material.cpp; sourceTree = SOURCE_ROOT; };
+		B9F30DACC6D24F00BDFAAE87 /* Camera.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Camera.h; path = common/Scene/Camera/Camera.h; sourceTree = SOURCE_ROOT; };
+		BECA05EE953944B9B450EC41 /* PhotonMappingRenderer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = PhotonMappingRenderer.h; path = common/Rendering/Renderer/Photon/PhotonMappingRenderer.h; sourceTree = SOURCE_ROOT; };
+		C0B8E92CB06C4D8AAFB18160 /* ImageWriter.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ImageWriter.cpp; path = common/Output/ImageWriter.cpp; sourceTree = SOURCE_ROOT; };
+		C30747E6F3A14EB6A264CB36 /* ColorSampler.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ColorSampler.h; path = common/Sampling/ColorSampler.h; sourceTree = SOURCE_ROOT; };
+		C56F39F1FD3644C5BA52806B /* MeshLoader.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = MeshLoader.h; path = common/Utility/Mesh/Loading/MeshLoader.h; sourceTree = SOURCE_ROOT; };
+		C97CAC52850E42708D2BCC0C /* PrimitiveBase.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = PrimitiveBase.h; path = common/Scene/Geometry/Primitives/PrimitiveBase.h; sourceTree = SOURCE_ROOT; };
+		CA18506CEA744CA3AAA3E0CD /* TextureLoader.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = TextureLoader.cpp; path = common/Utility/Texture/TextureLoader.cpp; sourceTree = SOURCE_ROOT; };
+		CA94DBED97104BCE8CD6171C /* TextureLoader.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = TextureLoader.h; path = common/Utility/Texture/TextureLoader.h; sourceTree = SOURCE_ROOT; };
+		CBCD8959169440B6ADF9C59D /* AreaLight.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = AreaLight.h; path = common/Scene/Lights/Area/AreaLight.h; sourceTree = SOURCE_ROOT; };
+		CE66317D9AB94E4CAB7F6A04 /* PerspectiveCamera.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = PerspectiveCamera.h; path = common/Scene/Camera/Perspective/PerspectiveCamera.h; sourceTree = SOURCE_ROOT; };
+		D38BC123F56142ECA9B4F99D /* UniformGridAcceleration.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = UniformGridAcceleration.h; path = common/Acceleration/UniformGrid/UniformGridAcceleration.h; sourceTree = SOURCE_ROOT; };
+		D3D0B80F240A577600FAC597 /* test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = test.cpp; path = test/test.cpp; sourceTree = "<group>"; };
+		D3D0B810240A577600FAC597 /* test.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = test.h; path = test/test.h; sourceTree = "<group>"; };
+		D5A40D361C5448C98486AB60 /* Primitive.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Primitive.h; path = common/Scene/Geometry/Primitives/Primitive.h; sourceTree = SOURCE_ROOT; };
+		D6AAFADB5C0C4908BC7B3413 /* CubeMapTexture.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = CubeMapTexture.h; path = common/Rendering/Textures/CubeMapTexture.h; sourceTree = SOURCE_ROOT; };
+		D968F31E176941BD99934AFB /* UniformGridAcceleration.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = UniformGridAcceleration.cpp; path = common/Acceleration/UniformGrid/UniformGridAcceleration.cpp; sourceTree = SOURCE_ROOT; };
+		DBA2F56B1BAC4749BF89E4AA /* Box.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Box.cpp; path = common/Scene/Geometry/Simple/Box/Box.cpp; sourceTree = SOURCE_ROOT; };
+		DBD24755E5A04DF39B6B22D7 /* AccelerationGenerator.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = AccelerationGenerator.cpp; path = common/Acceleration/AccelerationGenerator.cpp; sourceTree = SOURCE_ROOT; };
+		DF76A7DF08E34044A297E134 /* BVHAcceleration.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = BVHAcceleration.cpp; path = common/Acceleration/BVH/BVHAcceleration.cpp; sourceTree = SOURCE_ROOT; };
+		DFEFD55724FC427AAE0CF0BD /* PointLight.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = PointLight.cpp; path = common/Scene/Lights/Point/PointLight.cpp; sourceTree = SOURCE_ROOT; };
+		E114C59B60264792B53BE8D3 /* Ray.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Ray.cpp; path = common/Scene/Geometry/Ray/Ray.cpp; sourceTree = SOURCE_ROOT; };
+		E1A46CBEC47E4EB092D49BFA /* BlinnPhongMaterial.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = BlinnPhongMaterial.cpp; path = common/Rendering/Material/BlinnPhong/BlinnPhongMaterial.cpp; sourceTree = SOURCE_ROOT; };
+		E22CC61277ED45258D182FC7 /* Diagnostics.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Diagnostics.cpp; path = common/Utility/Diagnostics/Diagnostics.cpp; sourceTree = SOURCE_ROOT; };
+		E240F6D7FB1143938E066FF5 /* BackwardRenderer.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = BackwardRenderer.cpp; path = common/Rendering/Renderer/Backward/BackwardRenderer.cpp; sourceTree = SOURCE_ROOT; };
+		E6B6DE17FE4B40A58EF57B55 /* Application.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Application.h; path = common/Application.h; sourceTree = SOURCE_ROOT; };
+		E7A3F330152F4F709329A420 /* AccelerationCommon.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = AccelerationCommon.h; path = common/Acceleration/AccelerationCommon.h; sourceTree = SOURCE_ROOT; };
+		E7A63411B2954C57846378AF /* MeshLoader.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = MeshLoader.cpp; path = common/Utility/Mesh/Loading/MeshLoader.cpp; sourceTree = SOURCE_ROOT; };
+		E93915EE7E6A4A78ADF6762F /* Texture.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Texture.cpp; path = common/Rendering/Textures/Texture.cpp; sourceTree = SOURCE_ROOT; };
+		F28E8619E8484BB78E3E8209 /* VoxelGrid.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = VoxelGrid.h; path = common/Acceleration/UniformGrid/Internal/VoxelGrid.h; sourceTree = SOURCE_ROOT; };
+		F92FCDA096444C1B8D181884 /* BlinnPhongMaterial.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = BlinnPhongMaterial.h; path = common/Rendering/Material/BlinnPhong/BlinnPhongMaterial.h; sourceTree = SOURCE_ROOT; };
+		FBAB628F95544308AA0D9AE6 /* DirectionalLight.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = DirectionalLight.cpp; path = common/Scene/Lights/Directional/DirectionalLight.cpp; sourceTree = SOURCE_ROOT; };
+		FD67CBD85D6C4F90A3F8EA58 /* Camera.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Camera.cpp; path = common/Scene/Camera/Camera.cpp; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		044177B1BF2244B990BE664D /* Simple */ = {
+			isa = PBXGroup;
+			children = (
+				17F10396A53A4C2AA8DB3B62 /* SimpleAdaptiveSampler.cpp */,
+				45726729F40444F8896616ED /* SimpleAdaptiveSampler.h */,
+			);
+			name = Simple;
+			sourceTree = "<group>";
+		};
+		115EDB5E596846D4A7E0AA03 /* Geometry */ = {
+			isa = PBXGroup;
+			children = (
+				9E446EFF5F4145F3AC161679 /* Mesh */,
+				49F110055167462E9D48B6B1 /* Ray */,
+				F1F92A381A13454AB792FA32 /* Simple */,
+				D5A40D361C5448C98486AB60 /* Primitive.h */,
+				C97CAC52850E42708D2BCC0C /* PrimitiveBase.h */,
+				6233FAAC9EAB439EA5FEE47E /* Triangle.cpp */,
+				40DF16B5CFE14FEA8149E152 /* Triangle.h */,
+			);
+			name = Geometry;
+			sourceTree = "<group>";
+		};
+		1177FBFDA6664066BD161746 /* realm */ = {
+			isa = PBXGroup;
+			children = (
+				F9C8B420511F45C494E3C72C /* Source Files */,
+				2E4B5BD3B7EB4B42A92852C0 /* common */,
+				C6F6DB31B2334FA0AF575E28 /* Header Files */,
+			);
+			name = realm;
+			sourceTree = "<group>";
+		};
+		13809A0F56C24FD6B1F2D5EF /* Output */ = {
+			isa = PBXGroup;
+			children = (
+				C0B8E92CB06C4D8AAFB18160 /* ImageWriter.cpp */,
+				60D4F3CEDFDA4697BDB349FD /* ImageWriter.h */,
+			);
+			name = Output;
+			sourceTree = "<group>";
+		};
+		199452E19281402F9BDC2760 = {
+			isa = PBXGroup;
+			children = (
+				1177FBFDA6664066BD161746 /* realm */,
+				8783A16E190747C4AA65A8DB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1DEFCA6097DE48A2A7AA1422 /* Jitter */ = {
+			isa = PBXGroup;
+			children = (
+				831EFA37E4CC4349A16D1448 /* JitterColorSampler.cpp */,
+				71D6300DDC2643448E22BDD1 /* JitterColorSampler.h */,
+			);
+			name = Jitter;
+			sourceTree = "<group>";
+		};
+		21CAFF45209D469A8A4594AC /* Diagnostics */ = {
+			isa = PBXGroup;
+			children = (
+				E22CC61277ED45258D182FC7 /* Diagnostics.cpp */,
+				6099F5AE85B34DC89B053FF4 /* Diagnostics.h */,
+			);
+			name = Diagnostics;
+			sourceTree = "<group>";
+		};
+		2E4B5BD3B7EB4B42A92852C0 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				9573931547BF469DB5D6EA14 /* Acceleration */,
+				D92423D56AD74066B9741315 /* Intersection */,
+				13809A0F56C24FD6B1F2D5EF /* Output */,
+				4BF23805A11C4CC8BCA9EC18 /* Rendering */,
+				57EF0DD5893B4E92AF79AF9F /* Sampling */,
+				9B1C9D7C24C647BBB803ACBE /* Scene */,
+				BADAF3465E794C20B7D3A357 /* Utility */,
+				00A5B0AE512845BE88991CF8 /* Application.cpp */,
+				E6B6DE17FE4B40A58EF57B55 /* Application.h */,
+				A511D7A37B9E4CFF8BEEBDED /* RayTracer.cpp */,
+				8BD2B12EC1B04180A8FDD727 /* RayTracer.h */,
+				6BC4D80396D5491685178356 /* common.h */,
+				A9C8B31E30C4462C873C09D3 /* core.h */,
+			);
+			name = common;
+			sourceTree = "<group>";
+		};
+		37E6AA678D38408F8B885ECF /* Loading */ = {
+			isa = PBXGroup;
+			children = (
+				E7A63411B2954C57846378AF /* MeshLoader.cpp */,
+				C56F39F1FD3644C5BA52806B /* MeshLoader.h */,
+			);
+			name = Loading;
+			sourceTree = "<group>";
+		};
+		49032650988E43ED8900C911 /* Box */ = {
+			isa = PBXGroup;
+			children = (
+				DBA2F56B1BAC4749BF89E4AA /* Box.cpp */,
+				949B89CDDCCF4DF496E46378 /* Box.h */,
+			);
+			name = Box;
+			sourceTree = "<group>";
+		};
+		49F110055167462E9D48B6B1 /* Ray */ = {
+			isa = PBXGroup;
+			children = (
+				E114C59B60264792B53BE8D3 /* Ray.cpp */,
+				91783E9E178A47958D0BDBEF /* Ray.h */,
+			);
+			name = Ray;
+			sourceTree = "<group>";
+		};
+		4BF23805A11C4CC8BCA9EC18 /* Rendering */ = {
+			isa = PBXGroup;
+			children = (
+				B1DE52FB2ED44F1A9B871345 /* Material */,
+				75F918DF771F4F83ADC7C7D4 /* Renderer */,
+				7DE427DD0D5D47EF8EA1218B /* Textures */,
+				4BD264C1226C4BF8A1D7028F /* Renderer.cpp */,
+				B0C1567E931F49F5B4C7A869 /* Renderer.h */,
+			);
+			name = Rendering;
+			sourceTree = "<group>";
+		};
+		57EF0DD5893B4E92AF79AF9F /* Sampling */ = {
+			isa = PBXGroup;
+			children = (
+				D2F1D5923FCB469CA699E269 /* Adaptive */,
+				1DEFCA6097DE48A2A7AA1422 /* Jitter */,
+				139F082BE71E4C59AC5E0A8B /* ColorSampler.cpp */,
+				C30747E6F3A14EB6A264CB36 /* ColorSampler.h */,
+				3EC6414CA5E24F93A25489C1 /* SamplerCommon.h */,
+			);
+			name = Sampling;
+			sourceTree = "<group>";
+		};
+		6E60B18ACF4844E2AC539071 /* UniformGrid */ = {
+			isa = PBXGroup;
+			children = (
+				A4BF27EC79164BAFAC849519 /* Voxel.cpp */,
+				6F62F7E35B2C499490EC0F51 /* Voxel.h */,
+				658BF09224264F899624B53A /* VoxelGrid.cpp */,
+				F28E8619E8484BB78E3E8209 /* VoxelGrid.h */,
+				D968F31E176941BD99934AFB /* UniformGridAcceleration.cpp */,
+				D38BC123F56142ECA9B4F99D /* UniformGridAcceleration.h */,
+			);
+			name = UniformGrid;
+			sourceTree = "<group>";
+		};
+		75F918DF771F4F83ADC7C7D4 /* Renderer */ = {
+			isa = PBXGroup;
+			children = (
+				A9BE2E867D1C41619FA17CC0 /* Backward */,
+				CD482B5E268F4D128F0C3F2A /* Photon */,
+			);
+			name = Renderer;
+			sourceTree = "<group>";
+		};
+		7DE427DD0D5D47EF8EA1218B /* Textures */ = {
+			isa = PBXGroup;
+			children = (
+				98C08340482A47DA92130C52 /* CubeMapTexture.cpp */,
+				D6AAFADB5C0C4908BC7B3413 /* CubeMapTexture.h */,
+				E93915EE7E6A4A78ADF6762F /* Texture.cpp */,
+				83A0D9BA97A1414EBA7BAB01 /* Texture.h */,
+				95119BB0AD484189BCD25CB5 /* Texture2D.cpp */,
+				84C066BC870A434F8FFC5F26 /* Texture2D.h */,
+			);
+			name = Textures;
+			sourceTree = "<group>";
+		};
+		81282BCDF2CE430D8F816152 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				E3D6246B8C324BAE8B72B1CD /* Perspective */,
+				FD67CBD85D6C4F90A3F8EA58 /* Camera.cpp */,
+				B9F30DACC6D24F00BDFAAE87 /* Camera.h */,
+			);
+			name = Camera;
+			sourceTree = "<group>";
+		};
+		875B5159BB7A4DA491AC1BA0 /* Lights */ = {
+			isa = PBXGroup;
+			children = (
+				8ADF2A91C1BA4EAC837C0360 /* Directional */,
+				A0239E03493A4BC5AB4326ED /* Point */,
+				1BC84F39348849AC81249DDC /* AreaLight.cpp */,
+				CBCD8959169440B6ADF9C59D /* AreaLight.h */,
+				55C2E724D7F647F983ECD179 /* Light.cpp */,
+				2046CAFC31F243F6AEAD37A0 /* Light.h */,
+			);
+			name = Lights;
+			sourceTree = "<group>";
+		};
+		8783A16E190747C4AA65A8DB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				35FAFCB8B2B84D29828FC3BA /* realm */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8ADF2A91C1BA4EAC837C0360 /* Directional */ = {
+			isa = PBXGroup;
+			children = (
+				FBAB628F95544308AA0D9AE6 /* DirectionalLight.cpp */,
+				91D2FC9DBED44B04AC0705CA /* DirectionalLight.h */,
+			);
+			name = Directional;
+			sourceTree = "<group>";
+		};
+		913613886F2A46E48D6350E3 /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				1D6F990604CC49ADBFBE0C98 /* Timer.cpp */,
+				B4805CE49ED841C1AB164AD9 /* Timer.h */,
+			);
+			name = Timer;
+			sourceTree = "<group>";
+		};
+		9573931547BF469DB5D6EA14 /* Acceleration */ = {
+			isa = PBXGroup;
+			children = (
+				9A7CAE48D55946BC9C3FC9FB /* BVH */,
+				E50ED2511D654D2F8D3654D5 /* Naive */,
+				6E60B18ACF4844E2AC539071 /* UniformGrid */,
+				E7A3F330152F4F709329A420 /* AccelerationCommon.h */,
+				DBD24755E5A04DF39B6B22D7 /* AccelerationGenerator.cpp */,
+				94DE94E2E38849DC8623AB79 /* AccelerationGenerator.h */,
+				34733AF95719499D847E53E2 /* AccelerationNode.cpp */,
+				453738B8F9DD41109CA8C6A6 /* AccelerationNode.h */,
+				33E4B2EC289445D3A548B00F /* AccelerationStructure.cpp */,
+				13C272A0077C4858BB29F5C6 /* AccelerationStructure.h */,
+				0B2BB7237E094A88B59DDBD3 /* AccelerationTypes.h */,
+			);
+			name = Acceleration;
+			sourceTree = "<group>";
+		};
+		9A7CAE48D55946BC9C3FC9FB /* BVH */ = {
+			isa = PBXGroup;
+			children = (
+				DF76A7DF08E34044A297E134 /* BVHAcceleration.cpp */,
+				20D9C5CB936D49BC861973C2 /* BVHAcceleration.h */,
+				0D4A2F756AB24927BAF6179E /* BVHNode.cpp */,
+				965FB3EB01154D178B025256 /* BVHNode.h */,
+			);
+			name = BVH;
+			sourceTree = "<group>";
+		};
+		9B1C9D7C24C647BBB803ACBE /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				81282BCDF2CE430D8F816152 /* Camera */,
+				115EDB5E596846D4A7E0AA03 /* Geometry */,
+				875B5159BB7A4DA491AC1BA0 /* Lights */,
+				2355F96172404D22B0299B85 /* Scene.cpp */,
+				B1A093770916412CA5309EC8 /* Scene.h */,
+				5DBBAFAD406F4C1797C86270 /* SceneObject.cpp */,
+				80C9F59F3532418298CC0EB0 /* SceneObject.h */,
+			);
+			name = Scene;
+			sourceTree = "<group>";
+		};
+		9E446EFF5F4145F3AC161679 /* Mesh */ = {
+			isa = PBXGroup;
+			children = (
+				84ABCC8309764557B6BEABE6 /* MeshObject.cpp */,
+				59BA3C04B03A4D08ADDEB269 /* MeshObject.h */,
+			);
+			name = Mesh;
+			sourceTree = "<group>";
+		};
+		A0239E03493A4BC5AB4326ED /* Point */ = {
+			isa = PBXGroup;
+			children = (
+				DFEFD55724FC427AAE0CF0BD /* PointLight.cpp */,
+				3A4FE213410A4BC181ECF758 /* PointLight.h */,
+			);
+			name = Point;
+			sourceTree = "<group>";
+		};
+		A9BE2E867D1C41619FA17CC0 /* Backward */ = {
+			isa = PBXGroup;
+			children = (
+				E240F6D7FB1143938E066FF5 /* BackwardRenderer.cpp */,
+				8BB7EC13AA8D4EF8A3BB438B /* BackwardRenderer.h */,
+			);
+			name = Backward;
+			sourceTree = "<group>";
+		};
+		AFAA4EC27892438BA52662E8 /* Texture */ = {
+			isa = PBXGroup;
+			children = (
+				CA18506CEA744CA3AAA3E0CD /* TextureLoader.cpp */,
+				CA94DBED97104BCE8CD6171C /* TextureLoader.h */,
+			);
+			name = Texture;
+			sourceTree = "<group>";
+		};
+		B0C63DB2F8424F159099892F /* BlinnPhong */ = {
+			isa = PBXGroup;
+			children = (
+				E1A46CBEC47E4EB092D49BFA /* BlinnPhongMaterial.cpp */,
+				F92FCDA096444C1B8D181884 /* BlinnPhongMaterial.h */,
+			);
+			name = BlinnPhong;
+			sourceTree = "<group>";
+		};
+		B1DE52FB2ED44F1A9B871345 /* Material */ = {
+			isa = PBXGroup;
+			children = (
+				B0C63DB2F8424F159099892F /* BlinnPhong */,
+				B8E81A17EC3540408A04D0E3 /* Material.cpp */,
+				8D0A376276D94879B6F95559 /* Material.h */,
+			);
+			name = Material;
+			sourceTree = "<group>";
+		};
+		BADAF3465E794C20B7D3A357 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				21CAFF45209D469A8A4594AC /* Diagnostics */,
+				E18BAFB572F74577A38F6AC3 /* Mesh */,
+				AFAA4EC27892438BA52662E8 /* Texture */,
+				913613886F2A46E48D6350E3 /* Timer */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
+		C6F6DB31B2334FA0AF575E28 /* Header Files */ = {
+			isa = PBXGroup;
+			children = (
+				894F124CF63A4040A51DBE85 /* app1.h */,
+				D3D0B810240A577600FAC597 /* test.h */,
+			);
+			name = "Header Files";
+			sourceTree = "<group>";
+		};
+		CD482B5E268F4D128F0C3F2A /* Photon */ = {
+			isa = PBXGroup;
+			children = (
+				55FAFC5962764CFE8CDC49F7 /* Photon.cpp */,
+				9FFE79E95A52437C95E64B5B /* Photon.h */,
+				0C11EC7CB56E4862BFE58F60 /* PhotonMappingRenderer.cpp */,
+				BECA05EE953944B9B450EC41 /* PhotonMappingRenderer.h */,
+			);
+			name = Photon;
+			sourceTree = "<group>";
+		};
+		D2F1D5923FCB469CA699E269 /* Adaptive */ = {
+			isa = PBXGroup;
+			children = (
+				044177B1BF2244B990BE664D /* Simple */,
+			);
+			name = Adaptive;
+			sourceTree = "<group>";
+		};
+		D92423D56AD74066B9741315 /* Intersection */ = {
+			isa = PBXGroup;
+			children = (
+				5886FC1A1A144EFBAFE6EF69 /* IntersectionState.cpp */,
+				583A20FE75474196A471AD71 /* IntersectionState.h */,
+			);
+			name = Intersection;
+			sourceTree = "<group>";
+		};
+		E18BAFB572F74577A38F6AC3 /* Mesh */ = {
+			isa = PBXGroup;
+			children = (
+				37E6AA678D38408F8B885ECF /* Loading */,
+			);
+			name = Mesh;
+			sourceTree = "<group>";
+		};
+		E3D6246B8C324BAE8B72B1CD /* Perspective */ = {
+			isa = PBXGroup;
+			children = (
+				275A70E313C143B7A5A03E41 /* PerspectiveCamera.cpp */,
+				CE66317D9AB94E4CAB7F6A04 /* PerspectiveCamera.h */,
+			);
+			name = Perspective;
+			sourceTree = "<group>";
+		};
+		E50ED2511D654D2F8D3654D5 /* Naive */ = {
+			isa = PBXGroup;
+			children = (
+				2B36A5C5C2AA48A799C0349C /* NaiveAcceleration.cpp */,
+				4A56267CBD1F424BA892ADBF /* NaiveAcceleration.h */,
+			);
+			name = Naive;
+			sourceTree = "<group>";
+		};
+		F1F92A381A13454AB792FA32 /* Simple */ = {
+			isa = PBXGroup;
+			children = (
+				49032650988E43ED8900C911 /* Box */,
+			);
+			name = Simple;
+			sourceTree = "<group>";
+		};
+		F9C8B420511F45C494E3C72C /* Source Files */ = {
+			isa = PBXGroup;
+			children = (
+				084C594D398A4F53A9A35785 /* app1.cpp */,
+				D3D0B80F240A577600FAC597 /* test.cpp */,
+				A44B26D1AB92491ABE58D533 /* main.cpp */,
+			);
+			name = "Source Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B12FD4BE04214F8D8F2B7A7C /* realm */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FDA23CC7FD234C62A8E73FF3 /* Build configuration list for PBXNativeTarget "realm" */;
+			buildPhases = (
+				C97780C65A694FA2884AF896 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = realm;
+			productName = realm;
+			productReference = 35FAFCB8B2B84D29828FC3BA /* realm */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2A2507E820D7444F898FF535 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1010;
+			};
+			buildConfigurationList = 0151FA882F4640879B6B951D /* Build configuration list for PBXProject "realm-raytracer" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 199452E19281402F9BDC2760;
+			projectDirPath = ../;
+			projectRoot = "";
+			targets = (
+				B12FD4BE04214F8D8F2B7A7C /* realm */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C97780C65A694FA2884AF896 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				02899E9734AA46C7BB4603C4 /* app1.cpp in Sources */,
+				462F9206088C4F33A849181E /* AccelerationGenerator.cpp in Sources */,
+				A9503BA629154D6E983B2ED6 /* AccelerationNode.cpp in Sources */,
+				E4D373C018764D019D5E5490 /* AccelerationStructure.cpp in Sources */,
+				C45D83850F084127870EB1B6 /* BVHAcceleration.cpp in Sources */,
+				D3D0B811240A577600FAC597 /* test.cpp in Sources */,
+				515CF581A04045D3BD6F0025 /* BVHNode.cpp in Sources */,
+				03416C88237F4F6DA0F9B9C3 /* NaiveAcceleration.cpp in Sources */,
+				62C5F58E59B84C74AE4DB0CE /* Voxel.cpp in Sources */,
+				028CAE47A5B5424B8BCA8BF5 /* VoxelGrid.cpp in Sources */,
+				C4EBD53DD0B24D4AB4158E48 /* UniformGridAcceleration.cpp in Sources */,
+				0A89903C3EC74F32AA10129F /* Application.cpp in Sources */,
+				E4094311550644AD8761CBF5 /* IntersectionState.cpp in Sources */,
+				843C73F47A9049BBBD4D05FB /* ImageWriter.cpp in Sources */,
+				2D97F815A6FF42D1B6EF776D /* RayTracer.cpp in Sources */,
+				8FC63B2A24F4473E97010899 /* BlinnPhongMaterial.cpp in Sources */,
+				24E1D7672156419694D5EC99 /* Material.cpp in Sources */,
+				49B27CB786E54EAE96CB8681 /* Renderer.cpp in Sources */,
+				937F629A53C148A38A0209F2 /* BackwardRenderer.cpp in Sources */,
+				00B7CC7D97BD4C0C94D8AC53 /* Photon.cpp in Sources */,
+				27CFCBDE2EC0407FA76A7B06 /* PhotonMappingRenderer.cpp in Sources */,
+				7800A651DF794205BF21140E /* CubeMapTexture.cpp in Sources */,
+				7F50A89851FD4E57B2255FD3 /* Texture.cpp in Sources */,
+				85D96922057B4EB4AF92AAED /* Texture2D.cpp in Sources */,
+				8F508349F33F44F1AFE4707B /* SimpleAdaptiveSampler.cpp in Sources */,
+				A8FFEDCD47A14B11B50731D3 /* ColorSampler.cpp in Sources */,
+				667E53AD647646B291F7FB2F /* JitterColorSampler.cpp in Sources */,
+				D0BD5A481DBC40648B381CAB /* Camera.cpp in Sources */,
+				5FAC35E5DC384E4381B6DD89 /* PerspectiveCamera.cpp in Sources */,
+				6F9ADA4FD1E949D5A02C84F1 /* MeshObject.cpp in Sources */,
+				F1BAD5C473334A38A2C6F3B9 /* Triangle.cpp in Sources */,
+				D12C47E32B7B42EFAF239325 /* Ray.cpp in Sources */,
+				B94D0C054DC548569008E148 /* Box.cpp in Sources */,
+				EA6468FBDDC94B4B8F4506E5 /* AreaLight.cpp in Sources */,
+				BC1FDF3B7C454D479C30CDFE /* DirectionalLight.cpp in Sources */,
+				AE5BA1FA3CED4E6FB611874D /* Light.cpp in Sources */,
+				AA31E0CE587A4CF7B54EF439 /* PointLight.cpp in Sources */,
+				B7C5FA29606E4D11A3C9DBDE /* Scene.cpp in Sources */,
+				3ABD5118CE7C4BB9906D1759 /* SceneObject.cpp in Sources */,
+				839BDE2D9A6A49EC9CCE9BC2 /* Diagnostics.cpp in Sources */,
+				1D44672CA4F34C3D82F33B83 /* MeshLoader.cpp in Sources */,
+				CE487C1092994DEB92372358 /* TextureLoader.cpp in Sources */,
+				8A97904565744F06937BADC7 /* Timer.cpp in Sources */,
+				13B14F04330146069CE0E44C /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		078F14272B824176B61CE672 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk;
+				SYMROOT = /Users/jaythan/workspace/Realm/realm/build;
+			};
+			name = Debug;
+		};
+		55B360544C8F497CAD83EBFF /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'",
+					"'ASSET_PATH=/Users/jaythan/workspace/Realm/assets'",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (
+					/Users/jaythan/workspace/Realm/.,
+					/Users/jaythan/workspace/Realm/./external/glm,
+					/Users/jaythan/workspace/Realm/./external/libkdtree,
+					/Users/jaythan/workspace/Realm/./external/assimp/include,
+					/Users/jaythan/workspace/Realm/./external/freeimage/distrib/osx,
+				);
+				INSTALL_PATH = "";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CPLUSPLUSFLAGS = (
+					"-DNDEBUG",
+					"-Wall",
+					"-std=c++11",
+					"-Wno-missing-braces",
+				);
+				OTHER_LDFLAGS = (
+					"-Wl,-search_paths_first",
+					"-Wl,-headerpad_max_install_names",
+					/Users/jaythan/workspace/Realm/external/assimp/distrib/osx/libassimp.dylib,
+					/Users/jaythan/workspace/Realm/external/freeimage/distrib/osx/libfreeimage.a,
+				);
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = realm;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/jaythan/workspace/Realm/realm;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+					"$(inherited)",
+				);
+			};
+			name = MinSizeRel;
+		};
+		6329031B661448269BE46A5D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk;
+				SYMROOT = /Users/jaythan/workspace/Realm/realm/build;
+			};
+			name = Release;
+		};
+		7C3285C002D842D8866E7DD9 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk;
+				SYMROOT = /Users/jaythan/workspace/Realm/realm/build;
+			};
+			name = RelWithDebInfo;
+		};
+		AEFE9D65270B44EEB9A1DFC6 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'",
+					"'ASSET_PATH=/Users/jaythan/workspace/Realm/assets'",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (
+					/Users/jaythan/workspace/Realm/.,
+					/Users/jaythan/workspace/Realm/./external/glm,
+					/Users/jaythan/workspace/Realm/./external/libkdtree,
+					/Users/jaythan/workspace/Realm/./external/assimp/include,
+					/Users/jaythan/workspace/Realm/./external/freeimage/distrib/osx,
+				);
+				INSTALL_PATH = "";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CPLUSPLUSFLAGS = (
+					"-DNDEBUG",
+					"-Wall",
+					"-std=c++11",
+					"-Wno-missing-braces",
+				);
+				OTHER_LDFLAGS = (
+					"-Wl,-search_paths_first",
+					"-Wl,-headerpad_max_install_names",
+					/Users/jaythan/workspace/Realm/external/assimp/distrib/osx/libassimp.dylib,
+					/Users/jaythan/workspace/Realm/external/freeimage/distrib/osx/libfreeimage.a,
+				);
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = realm;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/jaythan/workspace/Realm/realm;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+					"$(inherited)",
+				);
+			};
+			name = RelWithDebInfo;
+		};
+		B5E6204C439C4AA58584AF21 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk;
+				SYMROOT = /Users/jaythan/workspace/Realm/realm/build;
+			};
+			name = MinSizeRel;
+		};
+		B90801DEF7644D2FBAFAF861 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'",
+					"'ASSET_PATH=/Users/jaythan/workspace/Realm/assets'",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (
+					/Users/jaythan/workspace/Realm/.,
+					/Users/jaythan/workspace/Realm/./external/glm,
+					/Users/jaythan/workspace/Realm/./external/libkdtree,
+					/Users/jaythan/workspace/Realm/./external/assimp/include,
+					/Users/jaythan/workspace/Realm/./external/freeimage/distrib/osx,
+				);
+				INSTALL_PATH = "";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CPLUSPLUSFLAGS = (
+					"-DNDEBUG",
+					"-Wall",
+					"-std=c++11",
+					"-Wno-missing-braces",
+				);
+				OTHER_LDFLAGS = (
+					"-Wl,-search_paths_first",
+					"-Wl,-headerpad_max_install_names",
+					/Users/jaythan/workspace/Realm/external/assimp/distrib/osx/libassimp.dylib,
+					/Users/jaythan/workspace/Realm/external/freeimage/distrib/osx/libfreeimage.a,
+				);
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = realm;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/jaythan/workspace/Realm/realm;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+					"$(inherited)",
+				);
+			};
+			name = Release;
+		};
+		CDC7E82BD4A94541B5C708A3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'",
+					"'ASSET_PATH=/Users/jaythan/workspace/Realm/assets'",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (
+					/Users/jaythan/workspace/Realm/.,
+					/Users/jaythan/workspace/Realm/./external/glm,
+					/Users/jaythan/workspace/Realm/./external/libkdtree,
+					/Users/jaythan/workspace/Realm/./external/assimp/include,
+					/Users/jaythan/workspace/Realm/./external/freeimage/distrib/osx,
+				);
+				INSTALL_PATH = "";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CPLUSPLUSFLAGS = (
+					"-Wall",
+					"-std=c++11",
+					"-Wno-missing-braces",
+				);
+				OTHER_LDFLAGS = (
+					"-Wl,-search_paths_first",
+					"-Wl,-headerpad_max_install_names",
+					/Users/jaythan/workspace/Realm/external/assimp/distrib/osx/libassimp.dylib,
+					/Users/jaythan/workspace/Realm/external/freeimage/distrib/osx/libfreeimage.a,
+				);
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = realm;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/jaythan/workspace/Realm/realm;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+					"$(inherited)",
+				);
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0151FA882F4640879B6B951D /* Build configuration list for PBXProject "realm-raytracer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				078F14272B824176B61CE672 /* Debug */,
+				6329031B661448269BE46A5D /* Release */,
+				B5E6204C439C4AA58584AF21 /* MinSizeRel */,
+				7C3285C002D842D8866E7DD9 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		FDA23CC7FD234C62A8E73FF3 /* Build configuration list for PBXNativeTarget "realm" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CDC7E82BD4A94541B5C708A3 /* Debug */,
+				B90801DEF7644D2FBAFAF861 /* Release */,
+				55B360544C8F497CAD83EBFF /* MinSizeRel */,
+				AEFE9D65270B44EEB9A1DFC6 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2A2507E820D7444F898FF535 /* Project object */;
+}
