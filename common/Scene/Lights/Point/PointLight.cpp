@@ -12,7 +12,9 @@ void PointLight::ComputeSampleRays(std::vector<Ray>& output, glm::vec3 origin, g
 
 float PointLight::ComputeLightAttenuation(glm::vec3 origin) const
 {
-    return 1.f;
+    const glm::vec3 lightPosition = glm::vec3(GetPosition());
+    const float distanceToOrigin = glm::distance(origin, lightPosition);
+    return 1.f / (distanceToOrigin * distanceToOrigin * 4);
 }
 
 void PointLight::GenerateRandomPhotonRay(Ray& ray) const

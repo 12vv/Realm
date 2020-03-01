@@ -1,0 +1,64 @@
+newmtl backWall1
+illum 4
+Kd 0.73 0.71 0.68
+Ka 0.40 0.40 0.40
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 10.00
+newmtl ceiling1
+illum 4
+Kd 0.73 0.71 0.68
+Ka 0.73 0.71 0.68
+Tf 1.00 1.00 1.00
+Ni 1.50
+Ks 0.00 0.00 0.00
+Ns 10.00
+newmtl floor1
+illum 4
+Kd 0.73 0.71 0.68
+Ka 0.73 0.71 0.68
+Tf 1.00 1.00 1.00
+Ni 1.50
+Ks 0.30 0.30 0.30
+Ns 80.00
+newmtl leftWall1
+illum 4
+Kd 0.63 0.06 0.05
+Ka 0.40 0.40 0.40
+Tf 1.00 1.00 1.00
+Ni 1.50
+Ks 0.00 0.00 0.00
+Ns 10.00
+newmtl light1
+illum 4
+Kd 0.78 0.78 0.78
+Ka 0.78 0.78 0.78
+Tf 1.00 1.00 1.00
+Ni 1.50
+Ks 0.00 0.00 0.00
+Ns 10.00
+newmtl rightWall1
+illum 4
+Kd 0.37 0.65 0.31
+Ka 0.40 0.40 0.40
+Tf 1.00 1.00 1.00
+Ni 1.50
+Ks 0.00 0.00 0.00
+Ns 10.00
+newmtl shortBox1
+illum 4
+Kd 0.73 0.71 0.68
+Ka 0.40 0.40 0.40
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 10.00
+newmtl sphere1
+illum 4
+Kd 0.49 0.63 0.66
+Ka 0.40 0.40 0.40
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.47 0.47 0.47
+Ns 8.65
