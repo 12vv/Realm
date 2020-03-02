@@ -1,0 +1,16 @@
+# This file uses centimeters as units for non-parametric coordinates.
+
+mtllib floor.mtl
+g default
+v 1.000000 0.022558 -1.050972
+v -0.990000 0.022558 -1.050972
+v -1.010000 0.022558 0.979028
+v 1.000000 0.022558 0.979028
+vn 0.000000 1.000000 0.000000
+vn 0.000000 1.000000 0.000000
+vn 0.000000 1.000000 0.000000
+vn 0.000000 1.000000 0.000000
+s off
+g floor
+usemtl floor1
+f 1//1 2//2 3//3 4//4

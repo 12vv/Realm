@@ -14,7 +14,7 @@ float PointLight::ComputeLightAttenuation(glm::vec3 origin) const
 {
     const glm::vec3 lightPosition = glm::vec3(GetPosition());
     const float distanceToOrigin = glm::distance(origin, lightPosition);
-    return 1.f / (distanceToOrigin * distanceToOrigin * 4);
+    return 1.f / (distanceToOrigin * distanceToOrigin * 8);
 }
 
 void PointLight::GenerateRandomPhotonRay(Ray& ray) const
