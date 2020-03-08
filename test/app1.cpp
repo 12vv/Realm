@@ -6,6 +6,9 @@ std::shared_ptr<Camera> Assignment5::CreateCamera() const
     const glm::vec2 resolution = GetImageOutputResolution();
     std::shared_ptr<Camera> camera = std::make_shared<PerspectiveCamera>(resolution.x / resolution.y, 26.6f);
     camera->SetPosition(glm::vec3(0.f, -4.1469f, 0.73693f));
+//    camera->SetPosition(glm::vec3(1.f, -6.5469f, 0.93693f));
+//    camera->SetPosition(glm::vec3(1.1f, -6.5469f, 0.93693f));
+
     camera->Rotate(glm::vec3(1.f, 0.f, 0.f), PI / 2.f);
     return camera;
 }
@@ -26,19 +29,31 @@ std::shared_ptr<Scene> Assignment5::CreateScene() const
 
     // Objects
     std::vector<std::shared_ptr<aiMaterial>> loadedMaterials;
-    std::vector<std::shared_ptr<MeshObject>> cubeObjects = MeshLoader::LoadMesh("CornellBox/CornellBox-Empty-Squashed.obj", &loadedMaterials);
-//    std::vector<std::shared_ptr<MeshObject>> cubeObjects = MeshLoader::LoadMesh("box_nf.obj", &loadedMaterials);
+//    std::vector<std::shared_ptr<MeshObject>> cubeObjects = MeshLoader::LoadMesh("CornellBox/CornellBox-Empty-Squashed.obj", &loadedMaterials);
+    std::vector<std::shared_ptr<MeshObject>> cubeObjects = MeshLoader::LoadMesh("box_rb_nf.obj", &loadedMaterials);
+//    std::vector<std::shared_ptr<MeshObject>> cubeObjects = MeshLoader::LoadMesh("scene1.obj", &loadedMaterials);
     for (size_t i = 0; i < cubeObjects.size(); ++i) {
         std::shared_ptr<Material> materialCopy = cubeMaterial->Clone();
         materialCopy->LoadMaterialFromAssimp(loadedMaterials[i]);
         cubeObjects[i]->SetMaterial(materialCopy);
     }
     
-    std::vector<std::shared_ptr<MeshObject>> floor = MeshLoader::LoadMesh("floor.obj", &loadedMaterials);
+    std::shared_ptr<BlinnPhongMaterial> floorMaterial = std::make_shared<BlinnPhongMaterial>();
+    floorMaterial->SetReflectivity(0.4f);
+    std::vector<std::shared_ptr<aiMaterial>> loadedFloorMaterials;
+    std::vector<std::shared_ptr<MeshObject>> floor = MeshLoader::LoadMesh("fl.obj", &loadedFloorMaterials);
+//    std::vector<std::shared_ptr<MeshObject>> floor = MeshLoader::LoadMesh("floor_brick.obj", &loadedFloorMaterials);
+    for (size_t i = 0; i < floor.size(); ++i) {
+        std::shared_ptr<Material> materialCopy = floorMaterial->Clone();
+        materialCopy->LoadMaterialFromAssimp(loadedFloorMaterials[i]);
+        floor[i]->SetMaterial(materialCopy);
+    }
+    
+    std::vector<std::shared_ptr<MeshObject>> textsphere = MeshLoader::LoadMesh("sphere.obj", &loadedMaterials);
     for (size_t i = 0; i < floor.size(); ++i) {
         std::shared_ptr<Material> materialCopy = cubeMaterial->Clone();
         materialCopy->LoadMaterialFromAssimp(loadedMaterials[i]);
-        floor[i]->SetMaterial(materialCopy);
+        textsphere[i]->SetMaterial(materialCopy);
     }
     
     
@@ -72,9 +87,10 @@ std::shared_ptr<Scene> Assignment5::CreateScene() const
     
     // Material_glossy
     std::shared_ptr<BlinnPhongMaterial> glossy = std::make_shared<BlinnPhongMaterial>();
-    glossy->SetDiffuse(glm::vec3(0.2f, 0.2f, 0.2f));
-    glossy->SetSpecular(glm::vec3(0.6f, 0.6f, 0.6f), 20.f);
-    glossy->SetAmbient(glm::vec3(0.2, 0.2, 0.2));
+    glossy->SetDiffuse(glm::vec3(0.f, 0.f, 0.f));
+    glossy->SetSpecular(glm::vec3(1.0f, 1.f, 1.f), 120.f);
+    glossy->SetAmbient(glm::vec3(0., 0., 0.));
+    glossy->SetReflectivity(0.5f);
     
 //    auto data = TextureLoader::LoadTexture("checkerboard.png");
 //    glossy->SetTexture("checkerboard", data);
@@ -97,15 +113,6 @@ std::shared_ptr<Scene> Assignment5::CreateScene() const
     test->SetDiffuse(glm::vec3(1.f, 1.f, 1.f));
     test->SetSpecular(glm::vec3(0.6f, 0.6f, 0.6f), 40.f);
     
-    
-    //    std::vector<std::shared_ptr<MeshObject>> cubeObjects1 = MeshLoader::LoadMesh("all.obj", &loadedMaterials1);
-//    std::vector<std::shared_ptr<MeshObject>> cube = MeshLoader::LoadMesh("glossy.obj", &loadedMaterials4);
-//    for (size_t i = 0; i < cube.size(); ++i) {
-//        std::shared_ptr<Material> materialCopy = test->Clone();
-//        materialCopy->LoadMaterialFromAssimp(loadedMaterials4[i]);
-//        cube[i]->SetMaterial(materialCopy);
-//    }
-    
 
     std::shared_ptr<SceneObject> cubeSceneObject = std::make_shared<SceneObject>();
     cubeSceneObject->AddMeshObject(cubeObjects);
@@ -113,28 +120,43 @@ std::shared_ptr<Scene> Assignment5::CreateScene() const
     cubeSceneObject->AddMeshObject(glass_sphere);
     cubeSceneObject->AddMeshObject(mirror_sphere);
     cubeSceneObject->AddMeshObject(glossy_obj1);
-//    cubeSceneObject->AddMeshObject(floor);
+    
+    cubeSceneObject->AddMeshObject(floor);
+//    cubeSceneObject->AddMeshObject(textsphere);
     
 //    cubeSceneObject->AddMeshObject(cube);
     
     cubeSceneObject->Rotate(glm::vec3(1.f, 0.f, 0.f), PI / 2.f);
-    cubeSceneObject->CreateAccelerationData(AccelerationTypes::UNIFORM_GRID);
+    cubeSceneObject->CreateAccelerationData(AccelerationTypes::BVH);
+    cubeSceneObject->ConfigureAccelerationStructure([](AccelerationStructure* genericAccelerator) {
+        BVHAcceleration* accelerator = dynamic_cast<BVHAcceleration*>(genericAccelerator);
+        accelerator->SetMaximumChildren(2);
+        accelerator->SetNodesOnLeaves(2);
+    });
+    
+    cubeSceneObject->ConfigureChildMeshAccelerationStructure([](AccelerationStructure* genericAccelerator) {
+        BVHAcceleration* accelerator = dynamic_cast<BVHAcceleration*>(genericAccelerator);
+        accelerator->SetMaximumChildren(2);
+        accelerator->SetNodesOnLeaves(2);
+    });
     newScene->AddSceneObject(cubeSceneObject);
 
     // Lights
     std::shared_ptr<Light> pointLight = std::make_shared<PointLight>();
-    pointLight->SetPosition(glm::vec3(0.01909f, 0.0101f, 0.97028f));
-    pointLight->SetLightColor(glm::vec3(1.f, 1.f, 1.f));
+    pointLight->SetPosition(glm::vec3(0.01909f, 0.0101f, 1.5f));
+    pointLight->SetLightColor(glm::vec3(0.98f, 1.f, 0.94f));
 
     std::shared_ptr<Light> dirLight = std::make_shared<DirectionalLight>(glm::vec3(0.f, 1.f, 0.f));
-    dirLight->SetPosition(glm::vec3(0.01909f, 0.0101f, 0.97028f));
+//    dirLight->SetPosition(glm::vec3(0.01909f, 0.0101f, 0.97028f));
     dirLight->SetLightColor(glm::vec3(1.f, 1.f, 1.f));
     
-//    // add directional light
-//    std::shared_ptr<Light> directionalLight = std::make_shared<DirectionalLight>();
-//    directionalLight->SetPosition(glm::vec3(-5.01909f, -15.0101f, 1.97028f));
-//    pointLight->SetLightColor(glm::vec3(0.f, 1.f, 1.f));
-//    newScene->AddLight(directionalLight);
+    // add area light
+    std::shared_ptr<AreaLight> areaLight = std::make_shared<AreaLight>(glm::vec2(0.2f, 0.2f));
+//    std::shared_ptr<Light> areaLight = std::make_shared<PointLight>();
+//    areaLight->SetSamplerAttributes(glm::vec3(2.f, 2.f, 1.f), 4);
+    areaLight->SetPosition(glm::vec3(0.f, 0.f, 1.5f));
+//    areaLight->SetPosition(glm::vec3(0.18f, 0.f, 1.9f));
+    areaLight->SetLightColor(glm::vec3(1.f, 1.f, 1.f));
 
 #if ACCELERATION_TYPE == 0
     newScene->GenerateAccelerationData(AccelerationTypes::NONE);
@@ -146,8 +168,10 @@ std::shared_ptr<Scene> Assignment5::CreateScene() const
     // Assignment 7 Part 2 TODO: Change the glm::ivec3(10, 10, 10) here.
     accelerator->SetSuggestedGridSize(glm::ivec3(10, 10, 10));
 #endif
-    newScene->AddLight(pointLight);
+    
+//    newScene->AddLight(pointLight);
     newScene->AddLight(dirLight);
+    newScene->AddLight(areaLight);
     
     return newScene;
 
@@ -171,7 +195,8 @@ std::shared_ptr<ColorSampler> Assignment5::CreateSampler() const
 
 std::shared_ptr<class Renderer> Assignment5::CreateRenderer(std::shared_ptr<Scene> scene, std::shared_ptr<ColorSampler> sampler) const
 {
-    return std::make_shared<BackwardRenderer>(scene, sampler);
+//    return std::make_shared<BackwardRenderer>(scene, sampler);
+    return std::make_shared<PhotonMappingRenderer>(scene, sampler);
 }
 
 int Assignment5::GetSamplesPerPixel() const

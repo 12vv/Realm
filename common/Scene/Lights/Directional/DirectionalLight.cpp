@@ -16,7 +16,7 @@ void DirectionalLight::ComputeSampleRays(std::vector<Ray>& output, glm::vec3 ori
 
 float DirectionalLight::ComputeLightAttenuation(glm::vec3 origin) const
 {
-    return 0.2f;
+    return 0.4f;
 }
 
 void DirectionalLight::GenerateRandomPhotonRay(Ray& ray) const

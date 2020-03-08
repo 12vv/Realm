@@ -1,10 +1,18 @@
-newmtl initialShadingGroup
+newmtl blinn1SG
 illum 4
-Kd 0.50 0.50 0.50
-Ks 0.4 0.4 0.4
-Ns 10
+Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
+map_Kd checkerboard.png
 Ni 1.00
-map_Kd brick/bricktexture.jpg
-map_Ks brick/bricktexture.jpg
+Ks 0.50 0.50 0.50
+newmtl initialShadingGroup1
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd bricktexture.jpg
+Ni 1.00
+Ks 0.00 0.00 0.00
+map_Ks bricktexture.jpg
+Ns 10.00

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		00B7CC7D97BD4C0C94D8AC53 /* Photon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55FAFC5962764CFE8CDC49F7 /* Photon.cpp */; };
-		02899E9734AA46C7BB4603C4 /* app1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 084C594D398A4F53A9A35785 /* app1.cpp */; };
 		028CAE47A5B5424B8BCA8BF5 /* VoxelGrid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 658BF09224264F899624B53A /* VoxelGrid.cpp */; };
 		03416C88237F4F6DA0F9B9C3 /* NaiveAcceleration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2B36A5C5C2AA48A799C0349C /* NaiveAcceleration.cpp */; };
 		0A89903C3EC74F32AA10129F /* Application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00A5B0AE512845BE88991CF8 /* Application.cpp */; };
@@ -47,6 +46,7 @@
 		D0BD5A481DBC40648B381CAB /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FD67CBD85D6C4F90A3F8EA58 /* Camera.cpp */; };
 		D12C47E32B7B42EFAF239325 /* Ray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E114C59B60264792B53BE8D3 /* Ray.cpp */; };
 		D3D0B811240A577600FAC597 /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D3D0B80F240A577600FAC597 /* test.cpp */; };
+		D3D0B812240EA88600FAC597 /* app1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 084C594D398A4F53A9A35785 /* app1.cpp */; };
 		E4094311550644AD8761CBF5 /* IntersectionState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5886FC1A1A144EFBAFE6EF69 /* IntersectionState.cpp */; };
 		E4D373C018764D019D5E5490 /* AccelerationStructure.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33E4B2EC289445D3A548B00F /* AccelerationStructure.cpp */; };
 		EA6468FBDDC94B4B8F4506E5 /* AreaLight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1BC84F39348849AC81249DDC /* AreaLight.cpp */; };
@@ -613,7 +613,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				02899E9734AA46C7BB4603C4 /* app1.cpp in Sources */,
 				462F9206088C4F33A849181E /* AccelerationGenerator.cpp in Sources */,
 				A9503BA629154D6E983B2ED6 /* AccelerationNode.cpp in Sources */,
 				E4D373C018764D019D5E5490 /* AccelerationStructure.cpp in Sources */,
@@ -629,6 +628,7 @@
 				843C73F47A9049BBBD4D05FB /* ImageWriter.cpp in Sources */,
 				2D97F815A6FF42D1B6EF776D /* RayTracer.cpp in Sources */,
 				8FC63B2A24F4473E97010899 /* BlinnPhongMaterial.cpp in Sources */,
+				D3D0B812240EA88600FAC597 /* app1.cpp in Sources */,
 				24E1D7672156419694D5EC99 /* Material.cpp in Sources */,
 				49B27CB786E54EAE96CB8681 /* Renderer.cpp in Sources */,
 				937F629A53C148A38A0209F2 /* BackwardRenderer.cpp in Sources */,

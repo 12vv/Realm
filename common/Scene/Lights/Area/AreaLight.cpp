@@ -1,7 +1,7 @@
 #include "common/Scene/Lights/Area/AreaLight.h"
 
 AreaLight::AreaLight(const glm::vec2& size):
-    samplesToUse(4), lightSize(size)
+    samplesToUse(32), lightSize(size)
 {
     sampler = make_unique<JitterColorSampler>();
     sampler->SetGridSize(glm::ivec3(2, 2, 1));
@@ -28,15 +28,31 @@ void AreaLight::ComputeSampleRays(std::vector<Ray>& output, glm::vec3 origin, gl
 
 float AreaLight::ComputeLightAttenuation(glm::vec3 origin) const
 {
-    const glm::vec3 lightToPoint = glm::normalize(origin - glm::vec3(GetPosition()));
-    if (glm::dot(lightToPoint, glm::vec3(GetForwardDirection())) < -SMALL_EPSILON) {
-        return 0.f;
-    }
-    return 1.f / static_cast<float>(samplesToUse);
+    const glm::vec3 lightPosition = glm::vec3(GetPosition());
+    const float distanceToOrigin = glm::distance(origin, lightPosition);
+    const glm::vec3 lightToPoint = glm::normalize(origin - lightPosition);
+    //SMALL_EPSILON
+//    if (glm::dot(lightToPoint, glm::vec3(GetForwardDirection())) < SMALL_EPSILON) {
+//        return 0.f;
+//    }
+//    return 1.f / static_cast<float>(samplesToUse);
+    return 1.f / (static_cast<float>(samplesToUse) * distanceToOrigin);
+    
+//    const glm::vec3 lightPosition = glm::vec3(GetPosition());
+//    const float distanceToOrigin = glm::distance(origin, lightPosition);
+//    //    return 1.f / (distanceToOrigin * distanceToOrigin * 8);
+//    return 1.f / (distanceToOrigin * 4);
 }
 
 void AreaLight::GenerateRandomPhotonRay(Ray& ray) const
 {
+    float x, y, z;
+    do{
+        x = -1 + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(2)));
+        y = -1 + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(2)));
+        z = -1 + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(2)));
+    }while((x*x + y*y + z*z) > 1);
+    ray.SetRayDirection(glm::normalize(glm::vec3(x, y, z)));
 }
 
 void AreaLight::SetSamplerAttributes(glm::ivec3 inputGridSize, int numSamples)

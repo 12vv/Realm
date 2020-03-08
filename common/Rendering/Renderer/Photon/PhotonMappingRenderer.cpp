@@ -11,7 +11,7 @@
 #include "common/Rendering/Material/Material.h"
 #include "glm/gtx/component_wise.hpp"
 
-#define VISUALIZE_PHOTON_MAPPING 1
+#define VISUALIZE_PHOTON_MAPPING 0
 
 PhotonMappingRenderer::PhotonMappingRenderer(std::shared_ptr<class Scene> scene, std::shared_ptr<class ColorSampler> sampler):
     BackwardRenderer(scene, sampler), 
@@ -62,18 +62,76 @@ void PhotonMappingRenderer::GenericPhotonMapGeneration(PhotonKdtree& photonMap, 
 
 void PhotonMappingRenderer::TracePhoton(PhotonKdtree& photonMap, Ray* photonRay, glm::vec3 lightIntensity, std::vector<char>& path, float currentIOR, int remainingBounces)
 {
-    /*
-     * Assignment 8 TODO: Trace a photon into the scene and make it bounce.
-     *    
-     *    How to insert a 'Photon' struct into the photon map.
-     *        Photon myPhoton;
-     *        ... set photon properties ...
-     *        photonMap.insert(myPhoton);
-     */
-
     assert(photonRay);
     IntersectionState state(0, 0);
     state.currentIOR = currentIOR;
+    // coding
+    Ray diffuseReflectionRay;
+    if(remainingBounces < 0 || !storedScene->Trace(photonRay, &state)){
+        return;
+    }
+    const glm::vec3 intersectionPoint = state.intersectionRay.GetRayPosition(state.intersectionT);
+    
+    const MeshObject* hitMeshObject = state.intersectedPrimitive->GetParentMeshObject();
+    const Material* hitMaterial = hitMeshObject->GetMaterial();
+    
+    if(path.size() > 1 && hitMaterial->HasDiffuseReflection()){
+        Photon tmpPhoton;
+        Ray tmpRay;
+        tmpRay.SetRayDirection(-photonRay->GetRayDirection());
+        tmpRay.SetRayPosition(intersectionPoint);
+        
+        tmpPhoton.intensity = lightIntensity;
+        tmpPhoton.position = intersectionPoint;
+        tmpPhoton.toLightRay = tmpRay;
+        photonMap.insert(tmpPhoton);
+    }
+    
+    glm::vec3 diffuseColor = hitMaterial->GetBaseDiffuseReflection();
+    //    std::cout << glm::to_string(hitMaterial->GetBaseDiffuseReflection()) << std::endl;
+    float maxColor = diffuseColor.x > diffuseColor.y ? (diffuseColor.x > diffuseColor.z ? diffuseColor.x : diffuseColor.z) : (diffuseColor.y > diffuseColor.z ? diffuseColor.y : diffuseColor.z);
+    float tmpPr = static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(1)));
+    if(tmpPr < maxColor){
+        // scatter the photon
+        
+        float u1 = static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(1)));
+        float u2 = static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(1)));
+        
+        //        std::cout << u1 << std::endl;
+        
+        float r = sqrt(u1);
+        float theta = 2 * M_PI * u2;
+        
+        float x = r * cos(theta);
+        float y = r * sin(theta);
+        float z = sqrt(1 - u1);
+        
+        glm::vec3 diffuseReflectionDir = glm::normalize(glm::vec3(x, y, z));
+        
+        
+        // transform
+        glm::vec3 normal = state.ComputeNormal();
+        glm::vec3 t = glm::cross(normal, glm::vec3(1, 0, 0));
+        glm::vec3 b = glm::cross(normal, t);
+        
+        glm::mat3 trans(normal, t, b);
+        diffuseReflectionDir = diffuseReflectionDir * glm::transpose(trans);
+        
+        //        Ray tmpRay(intersectionPoint, diffuseReflectionDir);
+        diffuseReflectionRay.SetRayPosition(intersectionPoint);
+        diffuseReflectionRay.SetRayDirection(diffuseReflectionDir);
+        
+        //        photonRay = &tmpRay;
+        //        photonRay->SetRayDirection(diffuseReflectionDir);
+        //        photonRay->SetRayPosition(intersectionPoint);
+        
+    }
+    
+    remainingBounces--;
+    path.emplace_back('L');
+    
+    //    TracePhoton(photonMap, photonRay, lightIntensity, path, currentIOR, remainingBounces);
+    TracePhoton(photonMap, &diffuseReflectionRay, lightIntensity, path, currentIOR, remainingBounces);
 }
 
 glm::vec3 PhotonMappingRenderer::ComputeSampleColor(const struct IntersectionState& intersection, const class Ray& fromCameraRay) const
@@ -86,7 +144,12 @@ glm::vec3 PhotonMappingRenderer::ComputeSampleColor(const struct IntersectionSta
     std::vector<Photon> foundPhotons;
     diffuseMap.find_within_range(intersectionVirtualPhoton, 0.003f, std::back_inserter(foundPhotons));
     if (!foundPhotons.empty()) {
-        finalRenderColor += glm::vec3(1.f, 0.f, 0.f);
+//        finalRenderColor += glm::vec3(1.f, 0.f, 0.f);
+        for(auto i: foundPhotons){
+            finalRenderColor += BackwardRenderer::ComputeSampleColor(intersection, i.toLightRay);
+        }
+        //        finalRenderColor += BackwardRenderer::ComputeSampleColor(intersection, intersectionVirtualPhoton.toLightRay);
+        finalRenderColor /= foundPhotons.size();
     }
 #endif
     return finalRenderColor;
