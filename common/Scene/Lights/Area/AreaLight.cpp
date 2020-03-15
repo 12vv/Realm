@@ -32,11 +32,13 @@ float AreaLight::ComputeLightAttenuation(glm::vec3 origin) const
     const float distanceToOrigin = glm::distance(origin, lightPosition);
     const glm::vec3 lightToPoint = glm::normalize(origin - lightPosition);
     //SMALL_EPSILON
-//    if (glm::dot(lightToPoint, glm::vec3(GetForwardDirection())) < SMALL_EPSILON) {
-//        return 0.f;
-//    }
+    if (glm::dot(lightToPoint, glm::vec3(GetForwardDirection())) < -0.9) {
+        return 0.f;
+    }
+    return 1.f / (static_cast<float>(samplesToUse) * distanceToOrigin * distanceToOrigin);
 //    return 1.f / static_cast<float>(samplesToUse);
-    return 1.f / (static_cast<float>(samplesToUse) * distanceToOrigin);
+//    return 1.f;
+//    return 1.f / (static_cast<float>(samplesToUse) * distanceToOrigin);
     
 //    const glm::vec3 lightPosition = glm::vec3(GetPosition());
 //    const float distanceToOrigin = glm::distance(origin, lightPosition);

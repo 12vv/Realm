@@ -71,6 +71,7 @@ void PhotonMappingRenderer::TracePhoton(PhotonKdtree& photonMap, Ray* photonRay,
         return;
     }
     const glm::vec3 intersectionPoint = state.intersectionRay.GetRayPosition(state.intersectionT);
+//        std::cout << glm::to_string(intersectionPoint) << std::endl;
     
     const MeshObject* hitMeshObject = state.intersectedPrimitive->GetParentMeshObject();
     const Material* hitMaterial = hitMeshObject->GetMaterial();
@@ -78,8 +79,9 @@ void PhotonMappingRenderer::TracePhoton(PhotonKdtree& photonMap, Ray* photonRay,
     if(path.size() > 1 && hitMaterial->HasDiffuseReflection()){
         Photon tmpPhoton;
         Ray tmpRay;
-        tmpRay.SetRayDirection(-photonRay->GetRayDirection());
-        tmpRay.SetRayPosition(intersectionPoint);
+        glm::vec3 tmpRayDir = -photonRay->GetRayDirection();
+        tmpRay.SetRayDirection(tmpRayDir);
+        tmpRay.SetRayPosition(intersectionPoint + LARGE_EPSILON * tmpRayDir);
         
         tmpPhoton.intensity = lightIntensity;
         tmpPhoton.position = intersectionPoint;
@@ -97,7 +99,6 @@ void PhotonMappingRenderer::TracePhoton(PhotonKdtree& photonMap, Ray* photonRay,
         float u1 = static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(1)));
         float u2 = static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(1)));
         
-        //        std::cout << u1 << std::endl;
         
         float r = sqrt(u1);
         float theta = 2 * M_PI * u2;
@@ -114,23 +115,18 @@ void PhotonMappingRenderer::TracePhoton(PhotonKdtree& photonMap, Ray* photonRay,
         glm::vec3 t = glm::cross(normal, glm::vec3(1, 0, 0));
         glm::vec3 b = glm::cross(normal, t);
         
-        glm::mat3 trans(normal, t, b);
+        glm::mat3 trans(t, b, normal);
         diffuseReflectionDir = diffuseReflectionDir * glm::transpose(trans);
+        //        diffuseReflectionDir = glm::transpose(trans) * diffuseReflectionDir;
         
-        //        Ray tmpRay(intersectionPoint, diffuseReflectionDir);
-        diffuseReflectionRay.SetRayPosition(intersectionPoint);
         diffuseReflectionRay.SetRayDirection(diffuseReflectionDir);
-        
-        //        photonRay = &tmpRay;
-        //        photonRay->SetRayDirection(diffuseReflectionDir);
-        //        photonRay->SetRayPosition(intersectionPoint);
+        diffuseReflectionRay.SetRayPosition(intersectionPoint + LARGE_EPSILON * diffuseReflectionDir);
         
     }
     
     remainingBounces--;
     path.emplace_back('L');
     
-    //    TracePhoton(photonMap, photonRay, lightIntensity, path, currentIOR, remainingBounces);
     TracePhoton(photonMap, &diffuseReflectionRay, lightIntensity, path, currentIOR, remainingBounces);
 }
 
@@ -148,7 +144,7 @@ glm::vec3 PhotonMappingRenderer::ComputeSampleColor(const struct IntersectionSta
         for(auto i: foundPhotons){
             finalRenderColor += BackwardRenderer::ComputeSampleColor(intersection, i.toLightRay);
         }
-        //        finalRenderColor += BackwardRenderer::ComputeSampleColor(intersection, intersectionVirtualPhoton.toLightRay);
+//        //        finalRenderColor += BackwardRenderer::ComputeSampleColor(intersection, intersectionVirtualPhoton.toLightRay);
         finalRenderColor /= foundPhotons.size();
     }
 #endif

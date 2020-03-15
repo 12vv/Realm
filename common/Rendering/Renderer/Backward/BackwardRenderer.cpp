@@ -50,6 +50,9 @@ glm::vec3 BackwardRenderer::ComputeSampleColor(const IntersectionState& intersec
             const glm::vec3 brdfResponse = objectMaterial->ComputeBRDF(intersection, light->GetLightColor(), sampleRays[s], fromCameraRay, lightAttenuation);
             sampleColor += brdfResponse;
         }
+        // addddddddddddddddddddddddddddddddd
+//        sampleColor /= sampleRays.size();
+        ////////////////////////////////////
     }
     sampleColor += objectMaterial->ComputeNonLightDependentBRDF(this, intersection);
     return sampleColor;

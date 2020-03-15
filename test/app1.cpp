@@ -29,12 +29,14 @@ std::shared_ptr<Scene> Assignment5::CreateScene() const
 
     // Objects
     std::vector<std::shared_ptr<aiMaterial>> loadedMaterials;
+//    std::vector<std::shared_ptr<MeshObject>> cubeObjects = MeshLoader::LoadMesh("CornellBox/CornellBox-Original.obj", &loadedMaterials);
 //    std::vector<std::shared_ptr<MeshObject>> cubeObjects = MeshLoader::LoadMesh("CornellBox/CornellBox-Empty-Squashed.obj", &loadedMaterials);
     std::vector<std::shared_ptr<MeshObject>> cubeObjects = MeshLoader::LoadMesh("box_rb_nf.obj", &loadedMaterials);
 //    std::vector<std::shared_ptr<MeshObject>> cubeObjects = MeshLoader::LoadMesh("scene1.obj", &loadedMaterials);
     for (size_t i = 0; i < cubeObjects.size(); ++i) {
         std::shared_ptr<Material> materialCopy = cubeMaterial->Clone();
         materialCopy->LoadMaterialFromAssimp(loadedMaterials[i]);
+//        materialCopy->SetAmbient(glm::vec3(0.5f, 0.5f, 0.5f));
         cubeObjects[i]->SetMaterial(materialCopy);
     }
     
@@ -48,15 +50,21 @@ std::shared_ptr<Scene> Assignment5::CreateScene() const
         materialCopy->LoadMaterialFromAssimp(loadedFloorMaterials[i]);
         floor[i]->SetMaterial(materialCopy);
     }
-    
-    std::vector<std::shared_ptr<MeshObject>> textsphere = MeshLoader::LoadMesh("sphere.obj", &loadedMaterials);
-    for (size_t i = 0; i < floor.size(); ++i) {
-        std::shared_ptr<Material> materialCopy = cubeMaterial->Clone();
-        materialCopy->LoadMaterialFromAssimp(loadedMaterials[i]);
-        textsphere[i]->SetMaterial(materialCopy);
+
+    // Material_diffuse
+    std::shared_ptr<BlinnPhongMaterial> diffuseMaterial = std::make_shared<BlinnPhongMaterial>();
+    diffuseMaterial->SetDiffuse(glm::vec3(1.f, 1.f, 1.f));
+    diffuseMaterial->SetSpecular(glm::vec3(0.f, 0.f, 0.f), 0.f);
+    std::vector<std::shared_ptr<aiMaterial>> loadedDiffuseMaterials;
+    std::vector<std::shared_ptr<MeshObject>> toy2 = MeshLoader::LoadMesh("toy2_diffuse.obj", &loadedDiffuseMaterials);
+    for (size_t i = 0; i < toy2.size(); ++i) {
+//        std::shared_ptr<Material> materialCopy = diffuseMaterial->Clone();
+//        materialCopy->LoadMaterialFromAssimp(loadedDiffuseMaterials[i]);
+        toy2[i]->SetMaterial(diffuseMaterial);
     }
-    
-    
+//
+//
+//
     // Material_glass
     std::shared_ptr<BlinnPhongMaterial> glass = std::make_shared<BlinnPhongMaterial>();
     glass->SetTransmittance(0.98f);
@@ -70,12 +78,13 @@ std::shared_ptr<Scene> Assignment5::CreateScene() const
 //        materialCopy->LoadMaterialFromAssimp(loadedMaterials1[i]);
         glass_sphere[i]->SetMaterial(glass);
     }
-    
+
     // Material_mirror
     std::shared_ptr<BlinnPhongMaterial> mirror = std::make_shared<BlinnPhongMaterial>();
-    mirror->SetReflectivity(0.98f);
+    mirror->SetReflectivity(1.f);
+    mirror->SetTransmittance(0.f);
 //    mirror->SetSpecular(glm::vec3(1.f, 1.f, 1.f), 150.f);
-    
+
     // Objects_sphere
     std::vector<std::shared_ptr<aiMaterial>> loadedMaterials2;
     std::vector<std::shared_ptr<MeshObject>> mirror_sphere = MeshLoader::LoadMesh("mirror.obj", &loadedMaterials2);
@@ -84,30 +93,31 @@ std::shared_ptr<Scene> Assignment5::CreateScene() const
 //        materialCopy->LoadMaterialFromAssimp(loadedMaterials2[i]);
         mirror_sphere[i]->SetMaterial(mirror);
     }
-    
+
     // Material_glossy
     std::shared_ptr<BlinnPhongMaterial> glossy = std::make_shared<BlinnPhongMaterial>();
     glossy->SetDiffuse(glm::vec3(0.f, 0.f, 0.f));
     glossy->SetSpecular(glm::vec3(1.0f, 1.f, 1.f), 120.f);
     glossy->SetAmbient(glm::vec3(0., 0., 0.));
     glossy->SetReflectivity(0.5f);
-    
+
 //    auto data = TextureLoader::LoadTexture("checkerboard.png");
 //    glossy->SetTexture("checkerboard", data);
-    
+
 //    glossy->SetReflectivity(0.1f);
-    
+
     // Objects_sphere
     std::vector<std::shared_ptr<aiMaterial>> loadedMaterials3;
-    std::vector<std::shared_ptr<MeshObject>> glossy_obj1 = MeshLoader::LoadMesh("toy.obj", &loadedMaterials3);
+    std::vector<std::shared_ptr<MeshObject>> glossy_obj1 = MeshLoader::LoadMesh("toy1.obj", &loadedMaterials3);
+//    std::vector<std::shared_ptr<MeshObject>> glossy_obj1 = MeshLoader::LoadMesh("man.obj", &loadedMaterials3);
     for (size_t i = 0; i < glossy_obj1.size(); ++i) {
 //        std::shared_ptr<Material> materialCopy = glossy->Clone();
 //        materialCopy->LoadMaterialFromAssimp(loadedMaterials3[i]);
 //        glossy_obj1[i]->SetMaterial(materialCopy);
         glossy_obj1[i]->SetMaterial(glossy);
     }
-    
-    
+
+
     std::vector<std::shared_ptr<aiMaterial>> loadedMaterials4;
     std::shared_ptr<BlinnPhongMaterial> test = std::make_shared<BlinnPhongMaterial>();
     test->SetDiffuse(glm::vec3(1.f, 1.f, 1.f));
@@ -120,8 +130,9 @@ std::shared_ptr<Scene> Assignment5::CreateScene() const
     cubeSceneObject->AddMeshObject(glass_sphere);
     cubeSceneObject->AddMeshObject(mirror_sphere);
     cubeSceneObject->AddMeshObject(glossy_obj1);
-    
     cubeSceneObject->AddMeshObject(floor);
+    cubeSceneObject->AddMeshObject(toy2);
+    
 //    cubeSceneObject->AddMeshObject(textsphere);
     
 //    cubeSceneObject->AddMeshObject(cube);
@@ -151,10 +162,10 @@ std::shared_ptr<Scene> Assignment5::CreateScene() const
     dirLight->SetLightColor(glm::vec3(1.f, 1.f, 1.f));
     
     // add area light
-    std::shared_ptr<AreaLight> areaLight = std::make_shared<AreaLight>(glm::vec2(0.2f, 0.2f));
-//    std::shared_ptr<Light> areaLight = std::make_shared<PointLight>();
+//    std::shared_ptr<AreaLight> areaLight = std::make_shared<AreaLight>(glm::vec2(2.f, 2.f));
+    std::shared_ptr<Light> areaLight = std::make_shared<PointLight>();
 //    areaLight->SetSamplerAttributes(glm::vec3(2.f, 2.f, 1.f), 4);
-    areaLight->SetPosition(glm::vec3(0.f, 0.f, 1.5f));
+    areaLight->SetPosition(glm::vec3(0.f, 0.f, 1.2f));
 //    areaLight->SetPosition(glm::vec3(0.18f, 0.f, 1.9f));
     areaLight->SetLightColor(glm::vec3(1.f, 1.f, 1.f));
 
@@ -170,7 +181,7 @@ std::shared_ptr<Scene> Assignment5::CreateScene() const
 #endif
     
 //    newScene->AddLight(pointLight);
-    newScene->AddLight(dirLight);
+//    newScene->AddLight(dirLight);
     newScene->AddLight(areaLight);
     
     return newScene;
@@ -179,16 +190,13 @@ std::shared_ptr<Scene> Assignment5::CreateScene() const
 std::shared_ptr<ColorSampler> Assignment5::CreateSampler() const
 {
     std::shared_ptr<JitterColorSampler> jitter = std::make_shared<JitterColorSampler>();
-    // ASSIGNMENT 5 TODO: Change the grid size to be glm::ivec3(X, Y, 1).
     jitter->SetGridSize(glm::ivec3(8, 8, 1));
 
     std::shared_ptr<SimpleAdaptiveSampler> sampler = std::make_shared<SimpleAdaptiveSampler>();
     sampler->SetInternalSampler(jitter);
 
-    // ASSIGNMENT 5 TODO: Change the '1.f' in '1.f * SMALL_EPSILON' here to be higher and see what your results are. (Part 3)
     sampler->SetEarlyExitParameters(100.f * SMALL_EPSILON, 16);
 
-    // ASSIGNMENT 5 TODO: Comment out 'return jitter;' to use the adaptive sampler. (Part 2)
 //    return jitter;
     return sampler;
 }
