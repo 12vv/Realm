@@ -31,13 +31,14 @@ std::shared_ptr<Scene> Assignment5::CreateScene() const
     std::vector<std::shared_ptr<aiMaterial>> loadedMaterials;
 //    std::vector<std::shared_ptr<MeshObject>> cubeObjects = MeshLoader::LoadMesh("CornellBox/CornellBox-Original.obj", &loadedMaterials);
 //    std::vector<std::shared_ptr<MeshObject>> cubeObjects = MeshLoader::LoadMesh("CornellBox/CornellBox-Empty-Squashed.obj", &loadedMaterials);
-    std::vector<std::shared_ptr<MeshObject>> cubeObjects = MeshLoader::LoadMesh("box_rb_nf.obj", &loadedMaterials);
-//    std::vector<std::shared_ptr<MeshObject>> cubeObjects = MeshLoader::LoadMesh("scene1.obj", &loadedMaterials);
+//    std::vector<std::shared_ptr<MeshObject>> cubeObjects = MeshLoader::LoadMesh("box_rb_nf.obj", &loadedMaterials);
+    std::vector<std::shared_ptr<MeshObject>> cubeObjects = MeshLoader::LoadMesh("CornellBox/CornellBox-Glossy.obj", &loadedMaterials);
     for (size_t i = 0; i < cubeObjects.size(); ++i) {
         std::shared_ptr<Material> materialCopy = cubeMaterial->Clone();
         materialCopy->LoadMaterialFromAssimp(loadedMaterials[i]);
 //        materialCopy->SetAmbient(glm::vec3(0.5f, 0.5f, 0.5f));
         cubeObjects[i]->SetMaterial(materialCopy);
+//        cubeObjects[i]->SetMaterial(cubeMaterial);
     }
     
     std::shared_ptr<BlinnPhongMaterial> floorMaterial = std::make_shared<BlinnPhongMaterial>();
@@ -127,11 +128,11 @@ std::shared_ptr<Scene> Assignment5::CreateScene() const
     std::shared_ptr<SceneObject> cubeSceneObject = std::make_shared<SceneObject>();
     cubeSceneObject->AddMeshObject(cubeObjects);
     
-    cubeSceneObject->AddMeshObject(glass_sphere);
-    cubeSceneObject->AddMeshObject(mirror_sphere);
-    cubeSceneObject->AddMeshObject(glossy_obj1);
-    cubeSceneObject->AddMeshObject(floor);
-    cubeSceneObject->AddMeshObject(toy2);
+//    cubeSceneObject->AddMeshObject(glass_sphere);
+//    cubeSceneObject->AddMeshObject(mirror_sphere);
+//    cubeSceneObject->AddMeshObject(glossy_obj1);
+//    cubeSceneObject->AddMeshObject(floor);
+//    cubeSceneObject->AddMeshObject(toy2);
     
 //    cubeSceneObject->AddMeshObject(textsphere);
     
