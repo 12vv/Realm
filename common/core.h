@@ -11,6 +11,7 @@
 #include "common/Scene/Lights/Point/PointLight.h"
 #include "common/Scene/Lights/Area/AreaLight.h"
 #include "common/Scene/Lights/Directional/DirectionalLight.h"
+#include "common/Scene/Lights/Spot/SpotLight.h"
 #include "common/Rendering/Material/BlinnPhong/BlinnPhongMaterial.h"
 #include "common/Utility/Mesh/Loading/MeshLoader.h"
 #include "common/Utility/Texture/TextureLoader.h"

@@ -11,11 +11,11 @@
 #include "common/Rendering/Material/Material.h"
 #include "glm/gtx/component_wise.hpp"
 
-#define VISUALIZE_PHOTON_MAPPING 1
+#define VISUALIZE_PHOTON_MAPPING 0
 
 PhotonMappingRenderer::PhotonMappingRenderer(std::shared_ptr<class Scene> scene, std::shared_ptr<class ColorSampler> sampler):
     BackwardRenderer(scene, sampler), 
-    diffusePhotonNumber(10000000),
+    diffusePhotonNumber(1000000),
     maxPhotonBounces(1000)
 {
     srand(static_cast<unsigned int>(time(NULL)));
@@ -52,15 +52,14 @@ void PhotonMappingRenderer::GenericPhotonMapGeneration(PhotonKdtree& photonMap, 
         const glm::vec3 photonIntensity = currentLight->GetLightColor() / static_cast<float>(totalPhotonsForLight);
         for (int j = 0; j < totalPhotonsForLight; ++j) {
             Ray photonRay;
-            std::vector<char> path;
-            path.push_back('L');
+            int path = 1;
             currentLight->GenerateRandomPhotonRay(photonRay);
             TracePhoton(photonMap, &photonRay, photonIntensity, path, 1.f, maxPhotonBounces);
         }
     }
 }
 
-void PhotonMappingRenderer::TracePhoton(PhotonKdtree& photonMap, Ray* photonRay, glm::vec3 lightIntensity, std::vector<char>& path, float currentIOR, int remainingBounces)
+void PhotonMappingRenderer::TracePhoton(PhotonKdtree& photonMap, Ray* photonRay, glm::vec3 lightIntensity, int& path, float currentIOR, int remainingBounces)
 {
     assert(photonRay);
     IntersectionState state(0, 0);
@@ -76,7 +75,8 @@ void PhotonMappingRenderer::TracePhoton(PhotonKdtree& photonMap, Ray* photonRay,
     const MeshObject* hitMeshObject = state.intersectedPrimitive->GetParentMeshObject();
     const Material* hitMaterial = hitMeshObject->GetMaterial();
     
-    if(path.size() > 1 && hitMaterial->HasDiffuseReflection()){
+    // hitMaterial->HasDiffuseReflection()
+    if(path > 1 && hitMaterial->HasDiffuseReflection()){
         // create photon
         Photon tmpPhoton;
 
@@ -98,11 +98,11 @@ void PhotonMappingRenderer::TracePhoton(PhotonKdtree& photonMap, Ray* photonRay,
     const float thresh = rand() / (RAND_MAX + 1.);
     if(thresh < maxPr){
         // scatter the photon
-        float u1 = rand() / (RAND_MAX + 1.);
-        float u2 = rand() / (RAND_MAX + 1.);
+        const float u1 = rand() / (RAND_MAX + 1.);
+        const float u2 = rand() / (RAND_MAX + 1.);
         
-        float r = std::sqrt(u1);
-        float theta = 2.f * PI * u2;
+        const float r = std::sqrt(u1);
+        const float theta = 2.f * PI * u2;
         
         float x = r * std::cos(theta);
         float y = r * std::sin(theta);
@@ -139,20 +139,26 @@ void PhotonMappingRenderer::TracePhoton(PhotonKdtree& photonMap, Ray* photonRay,
         const glm::mat3 T = glm::mat3(t, b, n);
         diffuseReflectionDir = T*diffuseReflectionDir;
         
-//        Ray diffuseReflectionRay(intersectionPoint + SMALL_EPSILON * diffuseReflectionDir, diffuseReflectionDir);
-        Ray diffuseReflectionRay(intersectionPoint, diffuseReflectionDir);
+        Ray diffuseReflectionRay(intersectionPoint + SMALL_EPSILON * diffuseReflectionDir, diffuseReflectionDir);
+//        Ray diffuseReflectionRay(intersectionPoint, diffuseReflectionDir);
         
-//        remainingBounces--;
-        path.emplace_back('L');
+
+//        path.emplace_back('L');
+        --remainingBounces;
+        ++path;
         
-        //    TracePhoton(photonMap, photonRay, lightIntensity, path, currentIOR, remainingBounces);
-        TracePhoton(photonMap, &diffuseReflectionRay, lightIntensity, path, currentIOR, remainingBounces-1);
+        TracePhoton(photonMap, &diffuseReflectionRay, lightIntensity, path, currentIOR, remainingBounces);
     }
 }
 
-glm::vec3 PhotonMappingRenderer::ComputeSampleColor(const struct IntersectionState& intersection, const class Ray& fromCameraRay) const
+glm::vec3 PhotonMappingRenderer::ComputeSampleColor(const struct IntersectionState& intersection, const class Ray& fromCameraRay, int sampleIdx) const
 {
-    glm::vec3 finalRenderColor = BackwardRenderer::ComputeSampleColor(intersection, fromCameraRay);
+    glm::vec3 finalRenderColor = BackwardRenderer::ComputeSampleColor(intersection, fromCameraRay, 0);
+    
+    // only do photon mapping for the first 2 samples! should be enough.
+    if (sampleIdx >= 1){
+        return finalRenderColor;
+    }
     
 #if VISUALIZE_PHOTON_MAPPING
     Photon intersectionVirtualPhoton;

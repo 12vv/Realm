@@ -1,6 +1,38 @@
 #include "test/app1.h"
 #include "common/core.h"
 
+void addSoftSpotlight(glm::vec3 center, float radius, int numSpotLights, glm::vec3 lightColor, std::shared_ptr<Scene> scene,
+                      float rotX, float rotY, float rotZ, float theta1, float theta2){
+    
+    for (int i = 0; i < numSpotLights; i++){
+        
+        // add a SPOTLIGHT
+        std::shared_ptr<Light> spotLight = std::make_shared<SpotLight>(theta1, theta2);
+        spotLight->Rotate(glm::vec3(1.f, 0.f, 0.f), rotX);
+        spotLight->Rotate(glm::vec3(0.f, 1.f, 0.f), rotY);
+        spotLight->Rotate(glm::vec3(0.f, 0.f, 1.f), rotZ);
+        spotLight->SetLightColor(lightColor / float(numSpotLights));
+        
+        // sample random uniformly on CIRCLE
+        float r = (float)std::rand() / RAND_MAX; //uniform in [0, 1)
+        float theta = (float)std::rand() / RAND_MAX *2 * PI; //uniform in [0, 2*PI)
+        
+        
+        float x = std::sqrt(r) * std::cos(theta) * radius;
+        float y = std::sqrt(r) * std::sin(theta) * radius;
+        
+        glm::vec3 lightPos = center;
+        
+        // displace perpendicular to normal
+        lightPos = lightPos + glm::vec3(spotLight->GetUpDirection()) * x;
+        lightPos = lightPos + glm::vec3(spotLight->GetRightDirection()) * y;
+        
+        spotLight->SetPosition(lightPos);
+        scene->AddLight(spotLight);
+    }
+}
+
+
 std::shared_ptr<Camera> Assignment5::CreateCamera() const
 {
     const glm::vec2 resolution = GetImageOutputResolution();
@@ -29,10 +61,11 @@ std::shared_ptr<Scene> Assignment5::CreateScene() const
 
     // Objects
     std::vector<std::shared_ptr<aiMaterial>> loadedMaterials;
-//    std::vector<std::shared_ptr<MeshObject>> cubeObjects = MeshLoader::LoadMesh("CornellBox/CornellBox-Original.obj", &loadedMaterials);
-//    std::vector<std::shared_ptr<MeshObject>> cubeObjects = MeshLoader::LoadMesh("CornellBox/CornellBox-Empty-Squashed.obj", &loadedMaterials);
+//    std::vector<std::shared_ptr<MeshObject>> cubeObjects = MeshLoader::LoadMesh("CornellBox/CornellBox-Sphere.obj", &loadedMaterials);
+    std::vector<std::shared_ptr<MeshObject>> cubeObjects = MeshLoader::LoadMesh("CornellBox/CornellBox-Empty-Squashed.obj", &loadedMaterials);
+//    std::vector<std::shared_ptr<MeshObject>> cubeObjects = MeshLoader::LoadMesh("test.obj", &loadedMaterials);
 //    std::vector<std::shared_ptr<MeshObject>> cubeObjects = MeshLoader::LoadMesh("box_rb_nf.obj", &loadedMaterials);
-    std::vector<std::shared_ptr<MeshObject>> cubeObjects = MeshLoader::LoadMesh("CornellBox/CornellBox-Glossy.obj", &loadedMaterials);
+//    std::vector<std::shared_ptr<MeshObject>> cubeObjects = MeshLoader::LoadMesh("CornellBox/CornellBox-Glossy.obj", &loadedMaterials);
     for (size_t i = 0; i < cubeObjects.size(); ++i) {
         std::shared_ptr<Material> materialCopy = cubeMaterial->Clone();
         materialCopy->LoadMaterialFromAssimp(loadedMaterials[i]);
@@ -73,7 +106,8 @@ std::shared_ptr<Scene> Assignment5::CreateScene() const
 
     // Objects_sphere
     std::vector<std::shared_ptr<aiMaterial>> loadedMaterials1;
-    std::vector<std::shared_ptr<MeshObject>> glass_sphere = MeshLoader::LoadMesh("glass1.obj", &loadedMaterials1);
+//    std::vector<std::shared_ptr<MeshObject>> glass_sphere = MeshLoader::LoadMesh("glass1.obj", &loadedMaterials1);
+    std::vector<std::shared_ptr<MeshObject>> glass_sphere = MeshLoader::LoadMesh("glass.obj", &loadedMaterials1);
     for (size_t i = 0; i < glass_sphere.size(); ++i) {
 //        std::shared_ptr<Material> materialCopy = glossy->Clone();
 //        materialCopy->LoadMaterialFromAssimp(loadedMaterials1[i]);
@@ -124,11 +158,21 @@ std::shared_ptr<Scene> Assignment5::CreateScene() const
     test->SetDiffuse(glm::vec3(1.f, 1.f, 1.f));
     test->SetSpecular(glm::vec3(0.6f, 0.6f, 0.6f), 40.f);
     
+    std::vector<std::shared_ptr<MeshObject>> test_obj = MeshLoader::LoadMesh("test_sphere.obj", &loadedMaterials4);
+    //    std::vector<std::shared_ptr<MeshObject>> glossy_obj1 = MeshLoader::LoadMesh("man.obj", &loadedMaterials3);
+    for (size_t i = 0; i < glossy_obj1.size(); ++i) {
+                std::shared_ptr<Material> materialCopy = test->Clone();
+                materialCopy->LoadMaterialFromAssimp(loadedMaterials4[i]);
+                test_obj[i]->SetMaterial(materialCopy);
+    }
+
+    
 
     std::shared_ptr<SceneObject> cubeSceneObject = std::make_shared<SceneObject>();
     cubeSceneObject->AddMeshObject(cubeObjects);
     
 //    cubeSceneObject->AddMeshObject(glass_sphere);
+    cubeSceneObject->AddMeshObject(test_obj);
 //    cubeSceneObject->AddMeshObject(mirror_sphere);
 //    cubeSceneObject->AddMeshObject(glossy_obj1);
 //    cubeSceneObject->AddMeshObject(floor);
@@ -166,9 +210,25 @@ std::shared_ptr<Scene> Assignment5::CreateScene() const
 //    std::shared_ptr<AreaLight> areaLight = std::make_shared<AreaLight>(glm::vec2(2.f, 2.f));
     std::shared_ptr<Light> areaLight = std::make_shared<PointLight>();
 //    areaLight->SetSamplerAttributes(glm::vec3(2.f, 2.f, 1.f), 4);
-    areaLight->SetPosition(glm::vec3(0.f, 0.f, 1.2f));
+    areaLight->SetPosition(glm::vec3(0.f, 0.f, 1.5f));
 //    areaLight->SetPosition(glm::vec3(0.18f, 0.f, 1.9f));
     areaLight->SetLightColor(glm::vec3(1.f, 1.f, 1.f));
+    
+    // add a SOFT SPOTLIGHT
+    float theta1 = PI / 16.f;
+    float theta2 = PI / 5.f;
+//    float rotX = -38.1149f / 180.f * PI;
+//    float rotY =  -14.2697f / 180.f * PI;
+//    float rotZ =  10.9828f / 180.f * PI;
+    
+    float rotX = 0.f / 180.f * PI;
+    float rotY =  0.f / 180.f * PI;
+    float rotZ =  0.f / 180.f * PI;
+    
+    glm::vec3 spotLightColor = glm::vec3(1.f, 1.f, 1.f);
+    glm::vec3 spotLightPosition = glm::vec3(0.f, 0.5f, 1.5f);
+    addSoftSpotlight(spotLightPosition, 0.0f, 1, spotLightColor, newScene, rotX, rotY, rotZ, theta1, theta2);
+    
 
 #if ACCELERATION_TYPE == 0
     newScene->GenerateAccelerationData(AccelerationTypes::NONE);
@@ -181,9 +241,10 @@ std::shared_ptr<Scene> Assignment5::CreateScene() const
     accelerator->SetSuggestedGridSize(glm::ivec3(10, 10, 10));
 #endif
     
-//    newScene->AddLight(pointLight);
+    newScene->AddLight(pointLight);
 //    newScene->AddLight(dirLight);
-    newScene->AddLight(areaLight);
+//    newScene->AddLight(areaLight);
+//    newScene->AddLight(spotLight);
     
     return newScene;
 
@@ -204,8 +265,8 @@ std::shared_ptr<ColorSampler> Assignment5::CreateSampler() const
 
 std::shared_ptr<class Renderer> Assignment5::CreateRenderer(std::shared_ptr<Scene> scene, std::shared_ptr<ColorSampler> sampler) const
 {
-//    return std::make_shared<BackwardRenderer>(scene, sampler);
-    return std::make_shared<PhotonMappingRenderer>(scene, sampler);
+    return std::make_shared<BackwardRenderer>(scene, sampler);
+//    return std::make_shared<PhotonMappingRenderer>(scene, sampler);
 }
 
 int Assignment5::GetSamplesPerPixel() const
@@ -232,3 +293,5 @@ glm::vec2 Assignment5::GetImageOutputResolution() const
 {
     return glm::vec2(640.f, 480.f);
 }
+
+

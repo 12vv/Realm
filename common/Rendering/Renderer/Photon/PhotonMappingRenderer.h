@@ -12,7 +12,7 @@ class PhotonMappingRenderer : public BackwardRenderer
 public:
     PhotonMappingRenderer(std::shared_ptr<class Scene> scene, std::shared_ptr<class ColorSampler> sampler);
     virtual void InitializeRenderer() override;
-    glm::vec3 ComputeSampleColor(const struct IntersectionState& intersection, const class Ray& fromCameraRay) const override;
+    virtual glm::vec3 ComputeSampleColor(const struct IntersectionState& intersection, const class Ray& fromCameraRay, int sampleIdx) const override;
 
     void SetNumberOfDiffusePhotons(int diffuse);
 private:
@@ -23,5 +23,5 @@ private:
     int maxPhotonBounces;
 
     void GenericPhotonMapGeneration(PhotonKdtree& photonMap, int totalPhotons);
-    void TracePhoton(PhotonKdtree& photonMap, Ray* photonRay, glm::vec3 lightIntensity, std::vector<char>& path, float currentIOR, int remainingBounces);
+    void TracePhoton(PhotonKdtree& photonMap, Ray* photonRay, glm::vec3 lightIntensity, int& path, float currentIOR, int remainingBounces);
 };

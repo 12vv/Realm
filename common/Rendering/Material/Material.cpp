@@ -61,7 +61,7 @@ glm::vec3 Material::ComputeReflection(const class Renderer* renderer, const stru
 {
     glm::vec3 reflectedColor;
     if (intersection.reflectionIntersection && intersection.reflectionIntersection->hasIntersection) {
-        reflectedColor = renderer->ComputeSampleColor(*intersection.reflectionIntersection.get(), intersection.reflectionIntersection->intersectionRay);
+        reflectedColor = renderer->ComputeSampleColor(*intersection.reflectionIntersection.get(), intersection.reflectionIntersection->intersectionRay, 10);
     }
     return reflectedColor;
 }
@@ -70,7 +70,7 @@ glm::vec3 Material::ComputeTransmission(const class Renderer* renderer, const st
 {
     glm::vec3 transmissionColor;
     if (intersection.refractionIntersection && intersection.refractionIntersection->hasIntersection) {
-        transmissionColor = renderer->ComputeSampleColor(*intersection.refractionIntersection.get(), intersection.refractionIntersection->intersectionRay);
+        transmissionColor = renderer->ComputeSampleColor(*intersection.refractionIntersection.get(), intersection.refractionIntersection->intersectionRay, 10);
     }
     return transmissionColor;
 }
@@ -102,6 +102,7 @@ void Material::LoadMaterialFromAssimp(std::shared_ptr<struct aiMaterial> assimpM
 
     assimpMaterial->Get(AI_MATKEY_REFRACTI, &indexOfRefraction, nullptr);
     assimpMaterial->Get(AI_MATKEY_COLOR_AMBIENT, glm::value_ptr(ambient), nullptr);
+    assimpMaterial->Get(AI_MATKEY_REFLECTIVITY, &reflectivity, nullptr);
 }
 
 void Material::SetTexture(const std::string& id, std::shared_ptr<class Texture> inputTexture)
