@@ -49,4 +49,5 @@ private:
     float reflectivity;         // Perfect reflection 
     float transmittance;        // Refraction
     float indexOfRefraction;
+//    glm::vec3 ks;
 };

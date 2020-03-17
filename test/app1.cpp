@@ -168,34 +168,34 @@ std::shared_ptr<Scene> App1::CreateScene() const
 
     
 
-    std::shared_ptr<SceneObject> cubeSceneObject = std::make_shared<SceneObject>();
-    cubeSceneObject->AddMeshObject(cubeObjects);
+    std::shared_ptr<SceneObject> sceneObject = std::make_shared<SceneObject>();
+    sceneObject->AddMeshObject(cubeObjects);
     
-//    cubeSceneObject->AddMeshObject(glass_sphere);
-    cubeSceneObject->AddMeshObject(test_obj);
-//    cubeSceneObject->AddMeshObject(mirror_sphere);
-//    cubeSceneObject->AddMeshObject(glossy_obj1);
-//    cubeSceneObject->AddMeshObject(floor);
-//    cubeSceneObject->AddMeshObject(toy2);
+    sceneObject->AddMeshObject(glass_sphere);
+//    sceneObject->AddMeshObject(test_obj);
+//    sceneObject->AddMeshObject(mirror_sphere);
+//    sceneObject->AddMeshObject(glossy_obj1);
+//    sceneObject->AddMeshObject(floor);
+//    sceneObject->AddMeshObject(toy2);
     
-//    cubeSceneObject->AddMeshObject(textsphere);
+//    sceneObject->AddMeshObject(textsphere);
     
-//    cubeSceneObject->AddMeshObject(cube);
+//    sceneObject->AddMeshObject(cube);
     
-    cubeSceneObject->Rotate(glm::vec3(1.f, 0.f, 0.f), PI / 2.f);
-    cubeSceneObject->CreateAccelerationData(AccelerationTypes::BVH);
-    cubeSceneObject->ConfigureAccelerationStructure([](AccelerationStructure* genericAccelerator) {
+    sceneObject->Rotate(glm::vec3(1.f, 0.f, 0.f), PI / 2.f);
+    sceneObject->CreateAccelerationData(AccelerationTypes::BVH);
+    sceneObject->ConfigureAccelerationStructure([](AccelerationStructure* genericAccelerator) {
         BVHAcceleration* accelerator = dynamic_cast<BVHAcceleration*>(genericAccelerator);
         accelerator->SetMaximumChildren(2);
         accelerator->SetNodesOnLeaves(2);
     });
     
-    cubeSceneObject->ConfigureChildMeshAccelerationStructure([](AccelerationStructure* genericAccelerator) {
+    sceneObject->ConfigureChildMeshAccelerationStructure([](AccelerationStructure* genericAccelerator) {
         BVHAcceleration* accelerator = dynamic_cast<BVHAcceleration*>(genericAccelerator);
         accelerator->SetMaximumChildren(2);
         accelerator->SetNodesOnLeaves(2);
     });
-    newScene->AddSceneObject(cubeSceneObject);
+    newScene->AddSceneObject(sceneObject);
 
     // Lights
     std::shared_ptr<Light> pointLight = std::make_shared<PointLight>();
@@ -223,7 +223,7 @@ std::shared_ptr<Scene> App1::CreateScene() const
     
     float rotX = 0.f / 180.f * PI;
     float rotY =  0.f / 180.f * PI;
-    float rotZ =  0.f / 180.f * PI;
+    float rotZ =  90.f / 180.f * PI;
     
     glm::vec3 spotLightColor = glm::vec3(1.f, 1.f, 1.f);
     glm::vec3 spotLightPosition = glm::vec3(0.f, 0.5f, 1.5f);
