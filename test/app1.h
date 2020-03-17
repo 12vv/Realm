@@ -2,7 +2,7 @@
 
 #include "common/Application.h"
 
-class Assignment5 : public Application
+class App1 : public Application
 {
 public:
     virtual std::shared_ptr<class Camera> CreateCamera() const override;

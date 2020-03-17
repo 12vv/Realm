@@ -1,9 +1,13 @@
 #include "common/RayTracer.h"
 
-#define ASSIGNMENT 5
-#if ASSIGNMENT == 5
-#define APPLICATION Assignment5
+#define APP 1
+
+#if APP == 1
+#define APPLICATION App1
 #include "test/app1.h"
+#elif APP == 0
+#define APPLICATION TestApp
+#include "test/test.h"
 #endif
 
 #ifdef _WIN32

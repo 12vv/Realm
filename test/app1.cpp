@@ -33,7 +33,7 @@ void addSoftSpotlight(glm::vec3 center, float radius, int numSpotLights, glm::ve
 }
 
 
-std::shared_ptr<Camera> Assignment5::CreateCamera() const
+std::shared_ptr<Camera> App1::CreateCamera() const
 {
     const glm::vec2 resolution = GetImageOutputResolution();
     std::shared_ptr<Camera> camera = std::make_shared<PerspectiveCamera>(resolution.x / resolution.y, 26.6f);
@@ -50,7 +50,7 @@ std::shared_ptr<Camera> Assignment5::CreateCamera() const
 // 2 -- Grid.
 #define ACCELERATION_TYPE 1
 
-std::shared_ptr<Scene> Assignment5::CreateScene() const
+std::shared_ptr<Scene> App1::CreateScene() const
 {
     std::shared_ptr<Scene> newScene = std::make_shared<Scene>();
 
@@ -249,7 +249,7 @@ std::shared_ptr<Scene> Assignment5::CreateScene() const
     return newScene;
 
 }
-std::shared_ptr<ColorSampler> Assignment5::CreateSampler() const
+std::shared_ptr<ColorSampler> App1::CreateSampler() const
 {
     std::shared_ptr<JitterColorSampler> jitter = std::make_shared<JitterColorSampler>();
     jitter->SetGridSize(glm::ivec3(8, 8, 1));
@@ -263,33 +263,33 @@ std::shared_ptr<ColorSampler> Assignment5::CreateSampler() const
     return sampler;
 }
 
-std::shared_ptr<class Renderer> Assignment5::CreateRenderer(std::shared_ptr<Scene> scene, std::shared_ptr<ColorSampler> sampler) const
+std::shared_ptr<class Renderer> App1::CreateRenderer(std::shared_ptr<Scene> scene, std::shared_ptr<ColorSampler> sampler) const
 {
     return std::make_shared<BackwardRenderer>(scene, sampler);
 //    return std::make_shared<PhotonMappingRenderer>(scene, sampler);
 }
 
-int Assignment5::GetSamplesPerPixel() const
+int App1::GetSamplesPerPixel() const
 {
     return 2;
 }
 
-bool Assignment5::NotifyNewPixelSample(glm::vec3 inputSampleColor, int sampleIndex)
+bool App1::NotifyNewPixelSample(glm::vec3 inputSampleColor, int sampleIndex)
 {
     return true;
 }
 
-int Assignment5::GetMaxReflectionBounces() const
+int App1::GetMaxReflectionBounces() const
 {
     return 2;
 }
 
-int Assignment5::GetMaxRefractionBounces() const
+int App1::GetMaxRefractionBounces() const
 {
     return 4;
 }
 
-glm::vec2 Assignment5::GetImageOutputResolution() const
+glm::vec2 App1::GetImageOutputResolution() const
 {
     return glm::vec2(640.f, 480.f);
 }
