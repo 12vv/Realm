@@ -12,14 +12,14 @@
 #include "glm/gtx/component_wise.hpp"
 
 #define VISUALIZE_PHOTON_MAPPING 0
-#define DIRECT_VISUALIZATION 1
-#define WITHOUT_CAUSTICS 0
+#define DIRECT_VISUALIZATION 0
+#define WITHOUT_CAUSTICS 1
 
 
 PhotonMappingRenderer::PhotonMappingRenderer(std::shared_ptr<class Scene> scene, std::shared_ptr<class ColorSampler> sampler):
 BackwardRenderer(scene, sampler),
 diffusePhotonNumber(1000000), // 2000000
-causticPhotonNumber(500000), // 100000
+causticPhotonNumber(100000), // 100000
 maxPhotonBounces(10), // 1000
 gatherSamplesNumber(64)
 {

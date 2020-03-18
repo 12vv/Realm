@@ -171,8 +171,8 @@ std::shared_ptr<Scene> App1::CreateScene() const
     std::shared_ptr<SceneObject> sceneObject = std::make_shared<SceneObject>();
     sceneObject->AddMeshObject(cubeObjects);
     
-    sceneObject->AddMeshObject(glass_sphere);
-//    sceneObject->AddMeshObject(test_obj);
+//    sceneObject->AddMeshObject(glass_sphere);
+    sceneObject->AddMeshObject(test_obj);
 //    sceneObject->AddMeshObject(mirror_sphere);
 //    sceneObject->AddMeshObject(glossy_obj1);
 //    sceneObject->AddMeshObject(floor);
@@ -214,6 +214,11 @@ std::shared_ptr<Scene> App1::CreateScene() const
 //    areaLight->SetPosition(glm::vec3(0.18f, 0.f, 1.9f));
     areaLight->SetLightColor(glm::vec3(1.f, 1.f, 1.f));
     
+    // sphereLight
+    std::shared_ptr<Light> sphereLight = std::make_shared<SphereLight>(0.5f);
+    sphereLight->SetPosition(glm::vec3(0.01909f, 0.0101f, 1.5f));
+    sphereLight->SetLightColor(glm::vec3(0.98f, 1.f, 0.94f));
+    
     // add a SOFT SPOTLIGHT
     float theta1 = PI / 16.f;
     float theta2 = PI / 5.f;
@@ -221,13 +226,13 @@ std::shared_ptr<Scene> App1::CreateScene() const
 //    float rotY =  -14.2697f / 180.f * PI;
 //    float rotZ =  10.9828f / 180.f * PI;
     
-    float rotX = 0.f / 180.f * PI;
+    float rotX = -45.f / 180.f * PI;
     float rotY =  0.f / 180.f * PI;
     float rotZ =  90.f / 180.f * PI;
     
     glm::vec3 spotLightColor = glm::vec3(1.f, 1.f, 1.f);
-    glm::vec3 spotLightPosition = glm::vec3(0.f, 0.5f, 1.5f);
-    addSoftSpotlight(spotLightPosition, 0.0f, 1, spotLightColor, newScene, rotX, rotY, rotZ, theta1, theta2);
+    glm::vec3 spotLightPosition = glm::vec3(0.f, 0.f, 1.5f);
+//    addSoftSpotlight(spotLightPosition, 0.0f, 1, spotLightColor, newScene, rotX, rotY, rotZ, theta1, theta2);
     
 
 #if ACCELERATION_TYPE == 0
@@ -237,14 +242,15 @@ std::shared_ptr<Scene> App1::CreateScene() const
 #else
     UniformGridAcceleration* accelerator = dynamic_cast<UniformGridAcceleration*>(newScene->GenerateAccelerationData(AccelerationTypes::UNIFORM_GRID));
     assert(accelerator);
-    // Assignment 7 Part 2 TODO: Change the glm::ivec3(10, 10, 10) here.
+
     accelerator->SetSuggestedGridSize(glm::ivec3(10, 10, 10));
 #endif
     
-    newScene->AddLight(pointLight);
+//    newScene->AddLight(pointLight);
 //    newScene->AddLight(dirLight);
 //    newScene->AddLight(areaLight);
 //    newScene->AddLight(spotLight);
+    newScene->AddLight(sphereLight);
     
     return newScene;
 

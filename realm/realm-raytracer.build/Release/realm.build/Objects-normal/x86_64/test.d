@@ -168,6 +168,7 @@ dependencies: /Users/jaythan/workspace/Realm/test/test.cpp \
   /Users/jaythan/workspace/Realm/common/Scene/Lights/Area/AreaLight.h \
   /Users/jaythan/workspace/Realm/common/Scene/Lights/Directional/DirectionalLight.h \
   /Users/jaythan/workspace/Realm/common/Scene/Lights/Spot/SpotLight.h \
+  /Users/jaythan/workspace/Realm/common/Scene/Lights/Sphere/SphereLight.h \
   /Users/jaythan/workspace/Realm/common/Rendering/Material/BlinnPhong/BlinnPhongMaterial.h \
   /Users/jaythan/workspace/Realm/common/Rendering/Material/Material.h \
   /Users/jaythan/workspace/Realm/common/Utility/Mesh/Loading/MeshLoader.h \

@@ -46,6 +46,7 @@
 		D0BD5A481DBC40648B381CAB /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FD67CBD85D6C4F90A3F8EA58 /* Camera.cpp */; };
 		D12C47E32B7B42EFAF239325 /* Ray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E114C59B60264792B53BE8D3 /* Ray.cpp */; };
 		D3C4A74D241F16F80096780B /* SpotLight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D3C4A74B241F16F80096780B /* SpotLight.cpp */; };
+		D3C4A751242210270096780B /* SphereLight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D3C4A74F242210270096780B /* SphereLight.cpp */; };
 		D3D0B811240A577600FAC597 /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D3D0B80F240A577600FAC597 /* test.cpp */; };
 		D3D0B812240EA88600FAC597 /* app1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 084C594D398A4F53A9A35785 /* app1.cpp */; };
 		E4094311550644AD8761CBF5 /* IntersectionState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5886FC1A1A144EFBAFE6EF69 /* IntersectionState.cpp */; };
@@ -131,6 +132,8 @@
 		D38BC123F56142ECA9B4F99D /* UniformGridAcceleration.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = UniformGridAcceleration.h; path = common/Acceleration/UniformGrid/UniformGridAcceleration.h; sourceTree = SOURCE_ROOT; };
 		D3C4A74B241F16F80096780B /* SpotLight.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = SpotLight.cpp; path = common/Scene/Lights/Spot/SpotLight.cpp; sourceTree = "<group>"; };
 		D3C4A74C241F16F80096780B /* SpotLight.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SpotLight.h; path = common/Scene/Lights/Spot/SpotLight.h; sourceTree = "<group>"; };
+		D3C4A74F242210270096780B /* SphereLight.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = SphereLight.cpp; path = common/Scene/Lights/Sphere/SphereLight.cpp; sourceTree = "<group>"; };
+		D3C4A750242210270096780B /* SphereLight.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SphereLight.h; path = common/Scene/Lights/Sphere/SphereLight.h; sourceTree = "<group>"; };
 		D3D0B80F240A577600FAC597 /* test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = test.cpp; path = test/test.cpp; sourceTree = "<group>"; };
 		D3D0B810240A577600FAC597 /* test.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = test.h; path = test/test.h; sourceTree = "<group>"; };
 		D5A40D361C5448C98486AB60 /* Primitive.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Primitive.h; path = common/Scene/Geometry/Primitives/Primitive.h; sourceTree = SOURCE_ROOT; };
@@ -342,6 +345,7 @@
 		875B5159BB7A4DA491AC1BA0 /* Lights */ = {
 			isa = PBXGroup;
 			children = (
+				D3C4A74E24220FF10096780B /* Sphere */,
 				D38A7FEA241F16510059B650 /* Spot */,
 				D38A7FE9241F15A50059B650 /* Area */,
 				8ADF2A91C1BA4EAC837C0360 /* Directional */,
@@ -533,6 +537,15 @@
 			name = Spot;
 			sourceTree = "<group>";
 		};
+		D3C4A74E24220FF10096780B /* Sphere */ = {
+			isa = PBXGroup;
+			children = (
+				D3C4A74F242210270096780B /* SphereLight.cpp */,
+				D3C4A750242210270096780B /* SphereLight.h */,
+			);
+			name = Sphere;
+			sourceTree = "<group>";
+		};
 		D92423D56AD74066B9741315 /* Intersection */ = {
 			isa = PBXGroup;
 			children = (
@@ -671,6 +684,7 @@
 				EA6468FBDDC94B4B8F4506E5 /* AreaLight.cpp in Sources */,
 				BC1FDF3B7C454D479C30CDFE /* DirectionalLight.cpp in Sources */,
 				AE5BA1FA3CED4E6FB611874D /* Light.cpp in Sources */,
+				D3C4A751242210270096780B /* SphereLight.cpp in Sources */,
 				AA31E0CE587A4CF7B54EF439 /* PointLight.cpp in Sources */,
 				B7C5FA29606E4D11A3C9DBDE /* Scene.cpp in Sources */,
 				3ABD5118CE7C4BB9906D1759 /* SceneObject.cpp in Sources */,
