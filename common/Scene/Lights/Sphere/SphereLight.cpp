@@ -37,14 +37,15 @@ void SphereLight::ComputeSampleRays(std::vector<Ray> &output, glm::vec3 origin, 
 
 float SphereLight::ComputeLightAttenuation(glm::vec3 origin) const
 {
-//    return 1.f;
-    const glm::vec3 lightPosition = glm::vec3(GetPosition());
-    const float distanceToOrigin = glm::distance(origin, lightPosition);
-    if(distanceToOrigin <= lightRadius){
-        return 1.f;
-    }
-    const float distanceToSpherePos = distanceToOrigin - lightRadius;
-    return 1.f / (distanceToOrigin * distanceToOrigin * 4);
+    return 4.f / static_cast<float>(samplesToUse);
+//    const glm::vec3 lightPosition = glm::vec3(GetPosition());
+//    const float distanceToOrigin = glm::distance(origin, lightPosition);
+//    if(distanceToOrigin <= lightRadius){
+//        return 5.f;
+//    }
+//    const float distanceToSpherePos = distanceToOrigin - lightRadius;
+////    return 1.f / ((static_cast<float>(samplesToUse) * distanceToSpherePos * distanceToSpherePos));
+//    return 1.f / (static_cast<float>(samplesToUse) * distanceToOrigin);
 }
 
 

@@ -162,6 +162,7 @@ dependencies: /Users/jaythan/workspace/Realm/test/test.cpp \
   /Users/jaythan/workspace/Realm/common/Scene/SceneObject.h \
   /Users/jaythan/workspace/Realm/common/Scene/Camera/Camera.h \
   /Users/jaythan/workspace/Realm/common/Scene/Camera/Perspective/PerspectiveCamera.h \
+  /Users/jaythan/workspace/Realm/common/Scene/Camera/WideAperture/WideApertureCamera.h \
   /Users/jaythan/workspace/Realm/common/Scene/Geometry/Mesh/MeshObject.h \
   /Users/jaythan/workspace/Realm/common/Scene/Lights/Light.h \
   /Users/jaythan/workspace/Realm/common/Scene/Lights/Point/PointLight.h \

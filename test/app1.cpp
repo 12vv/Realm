@@ -42,7 +42,20 @@ std::shared_ptr<Camera> App1::CreateCamera() const
 //    camera->SetPosition(glm::vec3(1.1f, -6.5469f, 0.93693f));
 
     camera->Rotate(glm::vec3(1.f, 0.f, 0.f), PI / 2.f);
-    return camera;
+//    return camera;
+    
+    
+    // camera with depth of field effect. Use every camera from before with copy paste if needed.
+    float focalDistance = 2.2f;
+    float apertureRadius = 0.02f;
+    std::shared_ptr<Camera> DOFcamera = std::make_shared<WideApertureCamera>(resolution.x / resolution.y, 49.1f * resolution.y / resolution.x, focalDistance, apertureRadius);
+    DOFcamera->SetPosition(glm::vec3(0.f, -2.1469f, 0.73693f));
+//    DOFcamera->Rotate(glm::vec3(1.f, 0.f, 0.f), 86.8058f / 180.f * PI);
+//    DOFcamera->Rotate(glm::vec3(0.f, 0.f, 1.f), -89.0828f / 180.f * PI);
+    DOFcamera->Rotate(glm::vec3(1.f, 0.f, 0.f), PI / 2.f);
+    
+    return DOFcamera;
+    
 }
 
 // 0 -- Naive.
@@ -61,10 +74,11 @@ std::shared_ptr<Scene> App1::CreateScene() const
 
     // Objects
     std::vector<std::shared_ptr<aiMaterial>> loadedMaterials;
+//    std::vector<std::shared_ptr<MeshObject>> cubeObjects = MeshLoader::LoadMesh("Scene7_1.obj", &loadedMaterials);
 //    std::vector<std::shared_ptr<MeshObject>> cubeObjects = MeshLoader::LoadMesh("CornellBox/CornellBox-Sphere.obj", &loadedMaterials);
-    std::vector<std::shared_ptr<MeshObject>> cubeObjects = MeshLoader::LoadMesh("CornellBox/CornellBox-Empty-Squashed.obj", &loadedMaterials);
+//    std::vector<std::shared_ptr<MeshObject>> cubeObjects = MeshLoader::LoadMesh("CornellBox/CornellBox-Empty-Squashed.obj", &loadedMaterials);
 //    std::vector<std::shared_ptr<MeshObject>> cubeObjects = MeshLoader::LoadMesh("test.obj", &loadedMaterials);
-//    std::vector<std::shared_ptr<MeshObject>> cubeObjects = MeshLoader::LoadMesh("box_rb_nf.obj", &loadedMaterials);
+    std::vector<std::shared_ptr<MeshObject>> cubeObjects = MeshLoader::LoadMesh("box_rb_nf.obj", &loadedMaterials);
 //    std::vector<std::shared_ptr<MeshObject>> cubeObjects = MeshLoader::LoadMesh("CornellBox/CornellBox-Glossy.obj", &loadedMaterials);
     for (size_t i = 0; i < cubeObjects.size(); ++i) {
         std::shared_ptr<Material> materialCopy = cubeMaterial->Clone();
@@ -106,8 +120,8 @@ std::shared_ptr<Scene> App1::CreateScene() const
 
     // Objects_sphere
     std::vector<std::shared_ptr<aiMaterial>> loadedMaterials1;
-//    std::vector<std::shared_ptr<MeshObject>> glass_sphere = MeshLoader::LoadMesh("glass1.obj", &loadedMaterials1);
-    std::vector<std::shared_ptr<MeshObject>> glass_sphere = MeshLoader::LoadMesh("glass.obj", &loadedMaterials1);
+    std::vector<std::shared_ptr<MeshObject>> glass_sphere = MeshLoader::LoadMesh("glass1.obj", &loadedMaterials1);
+//    std::vector<std::shared_ptr<MeshObject>> glass_sphere = MeshLoader::LoadMesh("glass.obj", &loadedMaterials1);
     for (size_t i = 0; i < glass_sphere.size(); ++i) {
 //        std::shared_ptr<Material> materialCopy = glossy->Clone();
 //        materialCopy->LoadMaterialFromAssimp(loadedMaterials1[i]);
@@ -171,11 +185,11 @@ std::shared_ptr<Scene> App1::CreateScene() const
     std::shared_ptr<SceneObject> sceneObject = std::make_shared<SceneObject>();
     sceneObject->AddMeshObject(cubeObjects);
     
-//    sceneObject->AddMeshObject(glass_sphere);
-    sceneObject->AddMeshObject(test_obj);
-//    sceneObject->AddMeshObject(mirror_sphere);
-//    sceneObject->AddMeshObject(glossy_obj1);
-//    sceneObject->AddMeshObject(floor);
+    sceneObject->AddMeshObject(glass_sphere);
+//    sceneObject->AddMeshObject(test_obj);
+    sceneObject->AddMeshObject(mirror_sphere);
+    sceneObject->AddMeshObject(glossy_obj1);
+    sceneObject->AddMeshObject(floor);
 //    sceneObject->AddMeshObject(toy2);
     
 //    sceneObject->AddMeshObject(textsphere);
@@ -215,7 +229,7 @@ std::shared_ptr<Scene> App1::CreateScene() const
     areaLight->SetLightColor(glm::vec3(1.f, 1.f, 1.f));
     
     // sphereLight
-    std::shared_ptr<Light> sphereLight = std::make_shared<SphereLight>(0.5f);
+    std::shared_ptr<Light> sphereLight = std::make_shared<SphereLight>(0.2f);
     sphereLight->SetPosition(glm::vec3(0.01909f, 0.0101f, 1.5f));
     sphereLight->SetLightColor(glm::vec3(0.98f, 1.f, 0.94f));
     
@@ -226,12 +240,12 @@ std::shared_ptr<Scene> App1::CreateScene() const
 //    float rotY =  -14.2697f / 180.f * PI;
 //    float rotZ =  10.9828f / 180.f * PI;
     
-    float rotX = -45.f / 180.f * PI;
+    float rotX = 45.f / 180.f * PI;
     float rotY =  0.f / 180.f * PI;
     float rotZ =  90.f / 180.f * PI;
     
     glm::vec3 spotLightColor = glm::vec3(1.f, 1.f, 1.f);
-    glm::vec3 spotLightPosition = glm::vec3(0.f, 0.f, 1.5f);
+    glm::vec3 spotLightPosition = glm::vec3(0.5f, 0.f, 1.5f);
 //    addSoftSpotlight(spotLightPosition, 0.0f, 1, spotLightColor, newScene, rotX, rotY, rotZ, theta1, theta2);
     
 
@@ -246,11 +260,11 @@ std::shared_ptr<Scene> App1::CreateScene() const
     accelerator->SetSuggestedGridSize(glm::ivec3(10, 10, 10));
 #endif
     
-//    newScene->AddLight(pointLight);
+    newScene->AddLight(pointLight);
 //    newScene->AddLight(dirLight);
 //    newScene->AddLight(areaLight);
 //    newScene->AddLight(spotLight);
-    newScene->AddLight(sphereLight);
+//    newScene->AddLight(sphereLight);
     
     return newScene;
 

@@ -12,7 +12,7 @@ public:
     void SetZNear(float input);
     void SetZFar(float input);
 
-private:
+protected:
     float aspectRatio;
     float fov; // fov is stored as radians
 
