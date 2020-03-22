@@ -19,7 +19,8 @@ float PointLight::ComputeLightAttenuation(glm::vec3 origin) const
     const glm::vec3 lightPosition = glm::vec3(GetPosition());
     const float distanceToOrigin = glm::distance(origin, lightPosition);
 //    return 1.f / (distanceToOrigin * distanceToOrigin * 4);
-    return 1.f / (distanceToOrigin * 1.5);
+    return 1.f / (1 + distanceToOrigin * 0.1f);
+//    return 1.f;
 }
 
 void PointLight::GenerateRandomPhotonRay(Ray& ray) const
@@ -29,7 +30,7 @@ void PointLight::GenerateRandomPhotonRay(Ray& ray) const
         x = -1 + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(2)));
         y = -1 + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(2)));
         z = -1 + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(2)));
-    }while((x*x + y*y + z*z) > 1);
+    }while((x*x + y*y + z*z) > 1.f);
     ray.SetRayPosition(glm::vec3(GetPosition()));
     ray.SetRayDirection(glm::normalize(glm::vec3(x, y, z)));
 }

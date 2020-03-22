@@ -32,11 +32,11 @@ float AreaLight::ComputeLightAttenuation(glm::vec3 origin) const
     const float distanceToOrigin = glm::distance(origin, lightPosition);
     const glm::vec3 lightToPoint = glm::normalize(origin - lightPosition);
     //SMALL_EPSILON
-    if (glm::dot(lightToPoint, glm::vec3(GetForwardDirection())) < -SMALL_EPSILON) {
-        return 0.f;
-    }
-    return 1.f / (static_cast<float>(samplesToUse) * distanceToOrigin * distanceToOrigin);
-//    return 1.f / static_cast<float>(samplesToUse);
+//    if (glm::dot(lightToPoint, glm::vec3(GetForwardDirection())) < -SMALL_EPSILON) {
+//        return 0.f;
+//    }
+//    return 1.f / (static_cast<float>(samplesToUse) * distanceToOrigin * distanceToOrigin);
+    return 1.f / static_cast<float>(samplesToUse);
 //    return 1.f;
 //    return 1.f / (static_cast<float>(samplesToUse) * distanceToOrigin);
     
@@ -54,6 +54,7 @@ void AreaLight::GenerateRandomPhotonRay(Ray& ray) const
         y = -1 + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(2)));
         z = -1 + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(2)));
     }while((x*x + y*y + z*z) > 1);
+    ray.SetRayPosition(glm::vec3(GetPosition()));
     ray.SetRayDirection(glm::normalize(glm::vec3(x, y, z)));
 }
 

@@ -1,7 +1,7 @@
 #include "common/Scene/Lights/Sphere/SphereLight.h"
 
 SphereLight::SphereLight(float radius):
-    samplesToUse(64), lightRadius(radius)
+    samplesToUse(128), lightRadius(radius)
 {
 }
 
@@ -28,7 +28,7 @@ void SphereLight::ComputeSampleRays(std::vector<Ray> &output, glm::vec3 origin, 
         const glm::vec3 lightPosition = glm::vec3(GetPosition());
         glm::vec3 sampleRayDirection = sampleUnitSphere();
         glm::vec3 lightPosOnSphere = sampleRayDirection * lightRadius + lightPosition;
-        const glm::vec3 rayDirection = glm::normalize(lightPosOnSphere - lightPosition);
+        const glm::vec3 rayDirection = glm::normalize(lightPosOnSphere - origin);
         const float distanceToLight = glm::distance(origin, lightPosOnSphere);
         output.emplace_back(origin, rayDirection, distanceToLight);
     }
@@ -37,27 +37,32 @@ void SphereLight::ComputeSampleRays(std::vector<Ray> &output, glm::vec3 origin, 
 
 float SphereLight::ComputeLightAttenuation(glm::vec3 origin) const
 {
-    return 4.f / static_cast<float>(samplesToUse);
+    return 1.f / static_cast<float>(samplesToUse);
 //    const glm::vec3 lightPosition = glm::vec3(GetPosition());
 //    const float distanceToOrigin = glm::distance(origin, lightPosition);
 //    if(distanceToOrigin <= lightRadius){
 //        return 5.f;
 //    }
 //    const float distanceToSpherePos = distanceToOrigin - lightRadius;
-////    return 1.f / ((static_cast<float>(samplesToUse) * distanceToSpherePos * distanceToSpherePos));
-//    return 1.f / (static_cast<float>(samplesToUse) * distanceToOrigin);
+////    return 1.f / ((static_cast<float>(samplesToUse) + distanceToSpherePos * distanceToSpherePos));
+//    return 1.f / (static_cast<float>(samplesToUse) + 0.01f * distanceToOrigin);
 }
 
 
 void SphereLight::GenerateRandomPhotonRay(Ray& ray) const
 {
-    float x, y, z;
+    // get random position on the sphere
+    const glm::vec3 LightOrigin = glm::vec3(GetPosition());
+    const glm::vec3 sampleDir = sampleUnitSphere();
+    const glm::vec3 rayPos = sampleDir * lightRadius + LightOrigin;
+    
+    float x=1.f, y=1.f, z=1.f;
     do{
         x = -1 + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(2)));
         y = -1 + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(2)));
         z = -1 + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(2)));
     }while((x*x + y*y + z*z) > 1);
-    ray.SetRayPosition(glm::vec3(GetPosition()));
+    ray.SetRayPosition(rayPos);
     ray.SetRayDirection(glm::normalize(glm::vec3(x, y, z)));
 }
 

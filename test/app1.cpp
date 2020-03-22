@@ -42,19 +42,19 @@ std::shared_ptr<Camera> App1::CreateCamera() const
 //    camera->SetPosition(glm::vec3(1.1f, -6.5469f, 0.93693f));
 
     camera->Rotate(glm::vec3(1.f, 0.f, 0.f), PI / 2.f);
-//    return camera;
+    return camera;
     
     
-    // camera with depth of field effect. Use every camera from before with copy paste if needed.
-    float focalDistance = 2.2f;
-    float apertureRadius = 0.02f;
-    std::shared_ptr<Camera> DOFcamera = std::make_shared<WideApertureCamera>(resolution.x / resolution.y, 49.1f * resolution.y / resolution.x, focalDistance, apertureRadius);
-    DOFcamera->SetPosition(glm::vec3(0.f, -2.1469f, 0.73693f));
-//    DOFcamera->Rotate(glm::vec3(1.f, 0.f, 0.f), 86.8058f / 180.f * PI);
-//    DOFcamera->Rotate(glm::vec3(0.f, 0.f, 1.f), -89.0828f / 180.f * PI);
-    DOFcamera->Rotate(glm::vec3(1.f, 0.f, 0.f), PI / 2.f);
-    
-    return DOFcamera;
+//    // camera with depth of field effect. Use every camera from before with copy paste if needed.
+//    float focalDistance = 2.2f;
+//    float apertureRadius = 0.02f;
+//    std::shared_ptr<Camera> DOFcamera = std::make_shared<WideApertureCamera>(resolution.x / resolution.y, 49.1f * resolution.y / resolution.x, focalDistance, apertureRadius);
+//    DOFcamera->SetPosition(glm::vec3(0.f, -2.1469f, 0.73693f));
+////    DOFcamera->Rotate(glm::vec3(1.f, 0.f, 0.f), 86.8058f / 180.f * PI);
+////    DOFcamera->Rotate(glm::vec3(0.f, 0.f, 1.f), -89.0828f / 180.f * PI);
+//    DOFcamera->Rotate(glm::vec3(1.f, 0.f, 0.f), PI / 2.f);
+//
+//    return DOFcamera;
     
 }
 
@@ -185,15 +185,14 @@ std::shared_ptr<Scene> App1::CreateScene() const
     std::shared_ptr<SceneObject> sceneObject = std::make_shared<SceneObject>();
     sceneObject->AddMeshObject(cubeObjects);
     
-    sceneObject->AddMeshObject(glass_sphere);
-//    sceneObject->AddMeshObject(test_obj);
-    sceneObject->AddMeshObject(mirror_sphere);
-    sceneObject->AddMeshObject(glossy_obj1);
+//    sceneObject->AddMeshObject(glass_sphere);
+//    sceneObject->AddMeshObject(mirror_sphere);
+//    sceneObject->AddMeshObject(glossy_obj1);
     sceneObject->AddMeshObject(floor);
 //    sceneObject->AddMeshObject(toy2);
     
 //    sceneObject->AddMeshObject(textsphere);
-    
+//    sceneObject->AddMeshObject(test_obj);
 //    sceneObject->AddMeshObject(cube);
     
     sceneObject->Rotate(glm::vec3(1.f, 0.f, 0.f), PI / 2.f);
@@ -260,11 +259,11 @@ std::shared_ptr<Scene> App1::CreateScene() const
     accelerator->SetSuggestedGridSize(glm::ivec3(10, 10, 10));
 #endif
     
-    newScene->AddLight(pointLight);
+//    newScene->AddLight(pointLight);
 //    newScene->AddLight(dirLight);
 //    newScene->AddLight(areaLight);
 //    newScene->AddLight(spotLight);
-//    newScene->AddLight(sphereLight);
+    newScene->AddLight(sphereLight);
     
     return newScene;
 

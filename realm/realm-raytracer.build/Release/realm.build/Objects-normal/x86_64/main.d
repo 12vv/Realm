@@ -139,5 +139,5 @@ dependencies: /Users/jaythan/workspace/Realm/main.cpp \
   /Users/jaythan/workspace/Realm/external/glm/glm/gtx/string_cast.inl \
   /Users/jaythan/workspace/Realm/common/Utility/Timer/Timer.h \
   /Users/jaythan/workspace/Realm/common/Utility/Diagnostics/Diagnostics.h \
-  /Users/jaythan/workspace/Realm/test/app1.h \
+  /Users/jaythan/workspace/Realm/test/test.h \
   /Users/jaythan/workspace/Realm/common/Application.h

@@ -1,6 +1,6 @@
 #include "common/RayTracer.h"
 
-#define APP 1
+#define APP 0
 
 #if APP == 1
 #define APPLICATION App1
