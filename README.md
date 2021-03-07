@@ -1,5 +1,7 @@
 # Realm
-A ray tracing renderer based on [stanford CS 148](http://web.stanford.edu/class/cs148/lectures.html).
+A ray tracing renderer based on [stanford CS 148 FALL 2019](http://web.stanford.edu/class/cs148/lectures.html).
+
+The ray tracing code framework is based on CS148 Fall 2019 homework. I made some modification for more realistic rendering. 
 
 
 
