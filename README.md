@@ -7,5 +7,7 @@ The ray tracing code framework is based on CS148 Fall 2019 homework. I made some
 
 ## Results
 ![Final Project result](https://github.com/12vv/Realm/blob/master/realm/Release/final-project.png)
+
 ![Final Project result](https://github.com/12vv/Realm/blob/master/realm/Release/render2.png)
+
 ![Final Project result](https://github.com/12vv/Realm/blob/master/realm/Release/render1.png)
